@@ -1,0 +1,26 @@
+@import "../../styles/const.scss";
+.header {
+  color: $text;
+  font-size: 30px;
+  padding: 20px;
+  position: fixed;
+  z-index: 1;
+  background: $bg;
+  width: 100%;
+  &__ul {
+    // position: fixed;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    &__li {
+      list-style-type: none;
+      &:hover {
+        color: $color;
+        cursor: pointer;
+      }
+    }
+  }
+}

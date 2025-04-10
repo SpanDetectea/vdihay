@@ -1,0 +1,22 @@
+@import '../../../styles/const.scss';
+.neon-button {
+  padding: 15px 40px;
+  font-size: 18px;
+  color: #00f0ff;
+  background: transparent;
+  border: 2px solid $color;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  background-color: #001a2e;
+  box-shadow: 0 0 5px $color, 0 0 10px $color, 0 0 20px $color,
+    0 0 40px $color;
+  transition: 0.3s;
+  &:hover {
+    background-color: #00f0ff10;
+    box-shadow: 0 0 10px $color, 0 0 20px $color, 0 0 40px $color,
+      0 0 60px $color;
+  }
+}

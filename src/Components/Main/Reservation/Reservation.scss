@@ -1,0 +1,10 @@
+@import '../../../styles/const.scss';
+
+.reservation {
+    height: 100vh;
+    width: calc(100% - 20px * 2);
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid $text;
+    border-radius: 5%;
+}
