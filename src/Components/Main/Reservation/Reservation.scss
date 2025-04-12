@@ -1,10 +1,68 @@
-@import '../../../styles/const.scss';
+@import "../../../styles/const.scss";
 
 .reservation {
-    height: 90vh;
-    width: calc(100% - 20px * 2);
-    padding: 20px;
-    margin: 20px;
-    border: 1px solid $text;
-    border-radius: 25px;
+  height: 90vh;
+  width: calc(100% - 20px * 2);
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid $text;
+  border-radius: 25px;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    &-input {
+      margin: 10px 0;
+      width: 50%;
+      border: 1px solid $text;
+      border-radius: 25px;
+      padding: 15px;
+      background: none;
+      color: $text;
+      &:focus {
+        border: 1px solid $color;
+        outline: none;
+      }
+      &::placeholder {
+        color: $text;
+      }
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+    }
+    &__date {
+      &-input {
+        position: relative;
+        width: calc((50% - 2 * 5px) / 3);
+        text-align: center;
+        &:nth-child(2) {
+            margin: 0 5px;
+        }
+        &::-webkit-calendar-picker-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: auto;
+            height: auto;
+            background: transparent;
+          }
+          &::-webkit-inner-spin-button, &::-webkit-clear-button {
+            // z-index: -10;
+          }
+          &::-webkit-input-placeholder {
+            // z-index: 99;
+          }
+          &:placeholder {
+            // z-index: 99;
+          }
+          &:not(.has-value):before {
+            content: attr(placeholder);
+            width: 100%;
+          }
+      }
+    }
+  }
 }
+
