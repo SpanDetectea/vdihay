@@ -10,9 +10,12 @@
   &__form {
     display: flex;
     flex-direction: column;
+    width: 20%;
+    min-width: 160px;
+    float: right;
     &-input {
       margin: 10px 0;
-      width: 50%;
+      width: 100%;
       border: 1px solid $text;
       border-radius: 25px;
       padding: 15px;
@@ -33,36 +36,68 @@
     &__date {
       &-input {
         position: relative;
-        width: calc((50% - 2 * 5px) / 3);
         text-align: center;
-        &:nth-child(2) {
-            margin: 0 5px;
-        }
+        // &:nth-child(2) {
+        //     margin: 0 5px;
+        // }
         &::-webkit-calendar-picker-indicator {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: auto;
-            height: auto;
-            background: transparent;
-          }
-          &::-webkit-inner-spin-button, &::-webkit-clear-button {
-            // z-index: -10;
-          }
-          &::-webkit-input-placeholder {
-            // z-index: 99;
-          }
-          &:placeholder {
-            // z-index: 99;
-          }
-          &:not(.has-value):before {
-            content: attr(placeholder);
-            width: 100%;
-          }
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: auto;
+          height: auto;
+          background: transparent;
+        }
+        &::-webkit-inner-spin-button,
+        &::-webkit-clear-button {
+          // z-index: -10;
+        }
+        &::-webkit-input-placeholder {
+          // z-index: 99;
+        }
+        &:placeholder {
+          // z-index: 99;
+        }
+        &:not(.has-value):before {
+          content: attr(placeholder);
+          width: 100%;
+        }
+      }
+    }
+    &__slots {
+      margin-top: 20px;
+      color: $text;
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .time-select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 25px;
+        border: 1px solid $text;
+        background-color: transparent;
+        color: $text;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:focus {
+          outline: none;
+          border-color: $color;
+        }
+
+        & option {
+          background-color: $bg;
+          color: $text;
+        }
+
+        & option:disabled {
+          color: #b0b0b0;
+        }
       }
     }
   }
 }
-
