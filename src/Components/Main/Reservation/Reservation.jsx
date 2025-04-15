@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "./Reservation.scss";
 import { getDate } from "../../../javaScript/date";
+import Map from "../Map/Map";
+import { formatTime } from "../../../javaScript/formatTime";
 
 function Reservation() {
   const {
@@ -10,18 +12,15 @@ function Reservation() {
     secondYear,
     secondMonth,
     secondday,
-    curHours,
-    curMinutes,
   } = getDate();
 
   const [date, setDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [timeSlots, setTimeSlots] = useState([]);
+  const [peopleCnt, setPeopleCnt] = useState("");
+  const [comment, setComment] = useState("");
 
   const todayStr = `${firstYear}-${firstMonth}-${firstday}`;
-
-  const formatTime = (hour, min) =>
-    `${hour.toString().padStart(2, "0")}:${min.toString().padStart(2, "0")}`;
 
   const generateTimeSlots = (selectedDate) => {
     const slots = [];
@@ -64,16 +63,19 @@ function Reservation() {
     }
   }, [date]);
 
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
-  };
-
-  const handleTimeChange = (e) => {
-    setSelectedTime(e.target.value);
-  };
+  const handleDateChange = (e) => setDate(e.target.value);
+  const handleTimeChange = (e) => setSelectedTime(e.target.value);
+  const handlePeopleCntChange = (e) => setPeopleCnt(e.target.value);
+  const handleCommentsChange = (e) => setComment(e.target.value);
 
   return (
     <div className="reservation">
+      <Map
+        selectedTime={selectedTime}
+        peopleCnt={peopleCnt}
+        comment={comment}
+        date={date}
+      />
       <form className="reservation__form">
         <div className="reservation__form__date">
           <input
@@ -87,10 +89,16 @@ function Reservation() {
             max={`${secondYear}-${secondMonth}-${secondday}`}
           />
         </div>
-
-        {date && (
+        <input
+          type="number"
+          className="reservation__form-input"
+          placeholder="Количество человек"
+          value={peopleCnt}
+          onInput={handlePeopleCntChange}
+        />
+        {date && peopleCnt && (
           <div className="reservation__form__slots">
-            <p>Выберите время:</p>
+            {/* <p>Выберите время:</p> */}
             <select
               className="time-select"
               value={selectedTime}
@@ -108,16 +116,12 @@ function Reservation() {
             </select>
           </div>
         )}
-
-        <input
-          type="number"
-          className="reservation__form-input"
-          placeholder="Количество человек"
-        />
         <input
           type="text"
           className="reservation__form-input"
           placeholder="Комментарии"
+          value={comment}
+          onInput={handleCommentsChange}
         />
       </form>
     </div>

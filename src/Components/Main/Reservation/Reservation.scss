@@ -7,12 +7,13 @@
   margin: 20px;
   border: 1px solid $text;
   border-radius: 25px;
+  display: flex;
   &__form {
     display: flex;
     flex-direction: column;
     width: 20%;
     min-width: 160px;
-    float: right;
+    // float: right;
     &-input {
       margin: 10px 0;
       width: 100%;
