@@ -47,7 +47,10 @@ const initialState = {
     {
       id: 6,
       peopleCount: 7,
-      reservedTimes: [["2025-04-11T19:00:00", "2025-04-11T21:00:00"],["2025-04-19T19:00:00", "2025-04-19T21:00:00"]],
+      reservedTimes: [
+        ["2025-04-11T19:00:00", "2025-04-11T21:00:00"],
+        ["2025-04-19T19:00:00", "2025-04-19T21:00:00"],
+      ],
       isVip: false,
       coord: { x: 255, y: 300, width: 60, height: 60 },
     },
@@ -114,8 +117,7 @@ const initialState = {
       coord: { x: 575, y: 460, width: 60, height: 60 },
     },
   ],
-
-
+  orderTimeDuration: [1.5, 2, 2.5, 3],
   walls: [
     { x1: 155, y1: 290, x2: 325, y2: 290 },
     { x1: 155, y1: 290, x2: 155, y2: 520 },

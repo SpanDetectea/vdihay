@@ -1,12 +1,14 @@
 import { useSelector } from "react-redux";
 import "./Map.scss";
 
-function Map({ selectedTime, peopleCnt, date, width = 800, height = 600 }) {
+function Map({ selectedTime, peopleCnt, date, orderTime, width = 800, height = 600 }) {
   const walls = useSelector((state) => state.reservation.walls);
   const places = useSelector((state) => state.reservation.places);
   const handleClick = (place) => {
     console.log(place);
   };
+
+
   return (
     <div className="Map">
       <svg
@@ -27,11 +29,21 @@ function Map({ selectedTime, peopleCnt, date, width = 800, height = 600 }) {
           />
         ))}
         {places.map((place, index) => {
-          let color = "lightblue"
+          let color = "lightblue";
           if (place.peopleCount >= peopleCnt && peopleCnt) {
             const choicesDate = new Date(date);
             choicesDate.setHours(selectedTime.split(":")[0]);
             choicesDate.setMinutes(selectedTime.split(":")[1]);
+ 
+            const choicesDateEnd = new Date(choicesDate);
+            
+            if (orderTime % 1 === 0) {
+              choicesDateEnd.setHours(+selectedTime.split(":")[0]+orderTime)
+            } else {
+              choicesDateEnd.setHours(+selectedTime.split(":")[0]+orderTime)
+              choicesDateEnd.setMinutes(choicesDate.getMinutes()+30)
+            }
+            // console.log(choicesDateEnd)
 
             const times = place.reservedTimes.find((time) => {
               const startTime = new Date(time[0]);
@@ -41,9 +53,8 @@ function Map({ selectedTime, peopleCnt, date, width = 800, height = 600 }) {
               return returnValues;
             });
             if (times === undefined) {
-              color = "green"
-            } else {
-            }
+              color = "green";
+            } 
           }
           return (
             <rect

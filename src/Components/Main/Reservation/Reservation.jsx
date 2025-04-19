@@ -3,6 +3,7 @@ import "./Reservation.scss";
 import { getDate } from "../../../javaScript/date";
 import Map from "../Map/Map";
 import { formatTime } from "../../../javaScript/formatTime";
+import { useSelector } from "react-redux";
 
 function Reservation() {
   const {
@@ -14,9 +15,12 @@ function Reservation() {
     secondday,
   } = getDate();
 
-
+  const orderTimeDuration = useSelector(
+    (state) => state.reservation.orderTimeDuration
+  );
   const [date, setDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
+  const [orderTime, setOrderTime] = useState(orderTimeDuration[0]);
   const [timeSlots, setTimeSlots] = useState([]);
   const [peopleCnt, setPeopleCnt] = useState("");
 
@@ -65,10 +69,16 @@ function Reservation() {
   const handleDateChange = (e) => setDate(e.target.value);
   const handleTimeChange = (e) => setSelectedTime(e.target.value);
   const handlePeopleCntChange = (e) => setPeopleCnt(e.target.value);
+  const handleOrderTime = (e) => setOrderTime(e.target.value);
 
   return (
     <div className="reservation">
-      <Map selectedTime={selectedTime} peopleCnt={peopleCnt} date={date} />
+      <Map
+        selectedTime={selectedTime}
+        peopleCnt={peopleCnt}
+        date={date}
+        orderTime={orderTime}
+      />
       <form className="reservation__form">
         <div className="reservation__form__date">
           <input
@@ -105,6 +115,24 @@ function Reservation() {
                   {time}
                 </option>
               ))}
+            </select>
+          </div>
+        )}
+        {date && peopleCnt && (
+          <div className="reservation__form__slots">
+            Сколько планируете посидеть
+            <select
+              className="time-select"
+              value={orderTime}
+              onChange={handleOrderTime}
+              disabled={timeSlots.length === 0}
+            >
+              <option value="">{orderTimeDuration[0]}</option>
+              {orderTimeDuration
+                .filter((item, index) => index != 0)
+                .map((time) => (
+                  <option>{time}</option>
+                ))}
             </select>
           </div>
         )}
