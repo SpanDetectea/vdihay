@@ -1,37 +1,12 @@
 import { useSelector } from "react-redux";
 import "./Map.scss";
 
-function Map({
-  selectedTime,
-  peopleCnt,
-  comment,
-  date,
-  width = 800,
-  height = 600,
-}) {
+function Map({ selectedTime, peopleCnt, date, width = 800, height = 600 }) {
   const walls = useSelector((state) => state.reservation.walls);
   const places = useSelector((state) => state.reservation.places);
-
-  const handleClick = () => {};
-  let color = "lightblue";
-  if (selectedTime && peopleCnt) {
-    color = "black";
-  }
-  const placesCopy = places.map((place) => {
-    if (place.reservedTimes.length == 0) {
-      return;
-    }
-
-    // if (place.peopleCount >= peopleCnt) {
-      const filterDatePlace = place.reservedTimes.filter((time) => {
-        const reservDate = new Date(time[0]).getDate();
-        console.log(time[0])
-        // console.log(reservDate, new Date(date).getDate());
-        return reservDate === new Date(date).getDate();
-      });
-    //   console.log(filterDatePlace);
-    // }
-  });
+  const handleClick = (place) => {
+    console.log(place);
+  };
   return (
     <div className="Map">
       <svg
@@ -51,20 +26,39 @@ function Map({
             strokeWidth="1"
           />
         ))}
-        {places.map((item, index) => (
-          <rect
-            key={index}
-            x={item.coord.x}
-            y={item.coord.y}
-            width={item.coord.width}
-            height={item.coord.height}
-            // fill={item.coord.color || "lightblue"}
-            fill={color}
-            stroke="black"
-            strokeWidth="2"
-            onClick={handleClick}
-          />
-        ))}
+        {places.map((place, index) => {
+          let color = "lightblue"
+          if (place.peopleCount >= peopleCnt && peopleCnt) {
+            const choicesDate = new Date(date);
+            choicesDate.setHours(selectedTime.split(":")[0]);
+            choicesDate.setMinutes(selectedTime.split(":")[1]);
+
+            const times = place.reservedTimes.find((time) => {
+              const startTime = new Date(time[0]);
+              const endTime = new Date(time[1]);
+              const returnValues =
+                startTime <= choicesDate && choicesDate <= endTime;
+              return returnValues;
+            });
+            if (times === undefined) {
+              color = "green"
+            } else {
+            }
+          }
+          return (
+            <rect
+              key={index}
+              x={place.coord.x}
+              y={place.coord.y}
+              width={place.coord.width}
+              height={place.coord.height}
+              fill={color}
+              stroke="black"
+              strokeWidth="2"
+              // onClick={() => handleClick(place)}
+            />
+          );
+        })}
       </svg>
     </div>
   );

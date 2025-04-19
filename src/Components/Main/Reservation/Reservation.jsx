@@ -14,11 +14,11 @@ function Reservation() {
     secondday,
   } = getDate();
 
+
   const [date, setDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [timeSlots, setTimeSlots] = useState([]);
   const [peopleCnt, setPeopleCnt] = useState("");
-  const [comment, setComment] = useState("");
 
   const todayStr = `${firstYear}-${firstMonth}-${firstday}`;
 
@@ -28,7 +28,7 @@ function Reservation() {
     const selectedDay = new Date(selectedDate);
     const isToday = selectedDate === todayStr;
 
-    // Временные слоты с 11:00 до 23:30
+    // Временные слоты с 11:00 до 23:45
     for (let hour = 11; hour < 24; hour++) {
       for (let min = 0; min < 60; min += 15) {
         const slot = new Date(selectedDay);
@@ -51,7 +51,6 @@ function Reservation() {
         slots.push({ time: formatTime(hour, min), disabled });
       }
     }
-
     return slots;
   };
 
@@ -59,23 +58,17 @@ function Reservation() {
     if (date) {
       const slots = generateTimeSlots(date);
       setTimeSlots(slots);
-      setSelectedTime(""); // сброс выбора
+      setSelectedTime("");
     }
   }, [date]);
 
   const handleDateChange = (e) => setDate(e.target.value);
   const handleTimeChange = (e) => setSelectedTime(e.target.value);
   const handlePeopleCntChange = (e) => setPeopleCnt(e.target.value);
-  const handleCommentsChange = (e) => setComment(e.target.value);
 
   return (
     <div className="reservation">
-      <Map
-        selectedTime={selectedTime}
-        peopleCnt={peopleCnt}
-        comment={comment}
-        date={date}
-      />
+      <Map selectedTime={selectedTime} peopleCnt={peopleCnt} date={date} />
       <form className="reservation__form">
         <div className="reservation__form__date">
           <input
@@ -98,7 +91,6 @@ function Reservation() {
         />
         {date && peopleCnt && (
           <div className="reservation__form__slots">
-            {/* <p>Выберите время:</p> */}
             <select
               className="time-select"
               value={selectedTime}
@@ -116,13 +108,6 @@ function Reservation() {
             </select>
           </div>
         )}
-        <input
-          type="text"
-          className="reservation__form-input"
-          placeholder="Комментарии"
-          value={comment}
-          onInput={handleCommentsChange}
-        />
       </form>
     </div>
   );
