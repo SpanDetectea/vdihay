@@ -68,7 +68,11 @@ function Reservation() {
 
   const handleDateChange = (e) => setDate(e.target.value);
   const handleTimeChange = (e) => setSelectedTime(e.target.value);
-  const handlePeopleCntChange = (e) => setPeopleCnt(e.target.value);
+  const handlePeopleCntChange = (e) => {
+    const value = Math.floor(e.target.value)
+    const validateValue = value < 1 ? "" : value
+    setPeopleCnt(validateValue);
+  };
   const handleOrderTime = (e) => setOrderTime(e.target.value);
 
   return (
@@ -130,7 +134,7 @@ function Reservation() {
               {/* <option value="">{orderTimeDuration[0]}</option> */}
               {orderTimeDuration
                 // .filter((item, index) => index != 0)
-                .map((time,index) => (
+                .map((time, index) => (
                   <option key={index}>{time}</option>
                 ))}
             </select>
