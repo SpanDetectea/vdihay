@@ -127,11 +127,11 @@ function Reservation() {
               onChange={handleOrderTime}
               disabled={timeSlots.length === 0}
             >
-              <option value="">{orderTimeDuration[0]}</option>
+              {/* <option value="">{orderTimeDuration[0]}</option> */}
               {orderTimeDuration
-                .filter((item, index) => index != 0)
-                .map((time) => (
-                  <option>{time}</option>
+                // .filter((item, index) => index != 0)
+                .map((time,index) => (
+                  <option key={index}>{time}</option>
                 ))}
             </select>
           </div>

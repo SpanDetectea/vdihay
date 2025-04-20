@@ -6,9 +6,8 @@ const initialState = {
       id: 1,
       peopleCount: 4,
       reservedTimes: [
-        ["2025-04-18T18:00:00", "2025-04-18T20:00:00"],
-        ["2025-04-18T22:00:00", "2025-04-18T23:45:00"],
-        ["2025-04-19T17:30:00", "2025-04-19T19:00:00"],
+        ["2025-04-20T17:30:00", "2025-04-20T19:00:00"],
+        ["2025-04-22T20:00:00", "2025-04-22T23:00:00"],
       ],
       isVip: false,
       coord: { x: 165, y: 460, width: 60, height: 60 },
@@ -16,103 +15,91 @@ const initialState = {
     {
       id: 2,
       peopleCount: 6,
-      reservedTimes: [["2025-04-11T19:30:00", "2025-04-11T21:00:00"]],
+      reservedTimes: [["2025-04-21T18:00:00", "2025-04-21T22:00:00"]],
       isVip: false,
       coord: { x: 255, y: 460, width: 60, height: 60 },
     },
     {
       id: 3,
       peopleCount: 3,
-      reservedTimes: [],
+      reservedTimes: [["2025-04-22T17:00:00", "2025-04-22T20:00:00"]],
       isVip: false,
       coord: { x: 165, y: 380, width: 60, height: 60 },
     },
     {
       id: 4,
       peopleCount: 5,
-      reservedTimes: [
-        ["2025-04-11T17:00:00", "2025-04-11T19:00:00"],
-        ["2025-04-13T20:00:00", "2025-04-13T22:00:00"],
-      ],
+      reservedTimes: [["2025-04-22T19:00:00", "2025-04-22T23:00:00"]],
       isVip: false,
       coord: { x: 255, y: 380, width: 60, height: 60 },
     },
     {
       id: 5,
       peopleCount: 2,
-      reservedTimes: [["2025-04-11T18:30:00", "2025-04-11T19:30:00"]],
+      reservedTimes: [["2025-04-20T18:00:00", "2025-04-20T21:00:00"]],
       isVip: false,
       coord: { x: 165, y: 300, width: 60, height: 60 },
     },
     {
       id: 6,
       peopleCount: 7,
-      reservedTimes: [
-        ["2025-04-11T19:00:00", "2025-04-11T21:00:00"],
-        ["2025-04-19T19:00:00", "2025-04-19T21:00:00"],
-      ],
+      reservedTimes: [["2025-04-21T19:00:00", "2025-04-21T22:00:00"]],
       isVip: false,
       coord: { x: 255, y: 300, width: 60, height: 60 },
     },
     {
       id: 7,
       peopleCount: 4,
-      reservedTimes: [],
+      reservedTimes: [["2025-04-22T18:00:00", "2025-04-22T22:30:00"]],
       isVip: true,
       coord: { x: 395, y: 60, width: 60, height: 60 },
     },
     {
       id: 8,
       peopleCount: 7,
-      reservedTimes: [["2025-04-11T20:30:00", "2025-04-11T22:30:00"]],
+      reservedTimes: [["2025-04-21T17:00:00", "2025-04-21T20:00:00"]],
       isVip: true,
       coord: { x: 395, y: 140, width: 60, height: 60 },
     },
     {
       id: 9,
       peopleCount: 3,
-      reservedTimes: [["2025-04-11T18:15:00", "2025-04-11T19:45:00"]],
+      reservedTimes: [["2025-04-22T19:30:00", "2025-04-22T22:00:00"]],
       isVip: true,
       coord: { x: 395, y: 220, width: 60, height: 60 },
     },
     {
       id: 10,
       peopleCount: 6,
-      reservedTimes: [],
+      reservedTimes: [["2025-04-20T19:00:00", "2025-04-20T22:00:00"]],
       isVip: false,
       coord: { x: 395, y: 300, width: 60, height: 60 },
     },
     {
       id: 11,
       peopleCount: 5,
-      reservedTimes: [
-        ["2025-04-11T19:45:00", "2025-04-11T21:45:00"],
-        ["2025-04-12T22:00:00", "2025-04-12T23:30:00"],
-      ],
+      reservedTimes: [["2025-04-21T20:00:00", "2025-04-22T00:00:00"]],
       isVip: false,
       coord: { x: 395, y: 380, width: 60, height: 60 },
     },
     {
       id: 12,
       peopleCount: 5,
-      reservedTimes: [["2025-04-11T20:00:00", "2025-04-11T21:00:00"]],
+      reservedTimes: [["2025-04-20T18:30:00", "2025-04-20T21:00:00"]],
       isVip: false,
       coord: { x: 395, y: 460, width: 60, height: 60 },
     },
     {
       id: 13,
       peopleCount: 2,
-      reservedTimes: [],
+      reservedTimes: [["2025-04-22T16:00:00", "2025-04-22T18:30:00"]],
       isVip: false,
       coord: { x: 485, y: 460, width: 60, height: 60 },
     },
     {
       id: 14,
       peopleCount: 7,
-      reservedTimes: [
-        ["2025-04-11T17:30:00", "2025-04-11T19:00:00"],
-        ["2025-04-13T18:00:00", "2025-04-13T20:00:00"],
-      ],
+      reservedTimes: [["2025-04-22T17:30:00", "2025-04-22T21:00:00"]],
       isVip: false,
       coord: { x: 575, y: 460, width: 60, height: 60 },
     },
@@ -145,23 +132,16 @@ export const reservationSlice = createSlice({
   name: "reservation",
   initialState,
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit позволяет нам писать "мутабельную" логику в reducer'ах.
-      // Это не изменяет состояние(state) напрямую, потому что внутри используется библиотека Immer,
-      // которая следит за изменениями в "черновом state" и создает новое
-      // неизменное состояние на основе этих изменений
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    booking: (state, { payload }) => {
+      const newReservationTime = [payload.choicesDate, payload.choicesDateEnd];
+      const place = state.places.find((p) => p.id === payload.id);
+      if (place) {
+        place.reservedTimes.push(newReservationTime);
+      }
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } =
-  reservationSlice.actions;
+export const { booking } = reservationSlice.actions;
 
 export default reservationSlice.reducer;

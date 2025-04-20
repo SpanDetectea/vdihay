@@ -14,8 +14,6 @@ export function getDate() {
   day = secondDate.getDate();
   const secondday = day / 10 >= 1 ? day : "0" + day;
 
-  // const curHours = firstDate.getHours()
-  // const curMinutes = firstDate.getMinutes()
 
   return {
     firstYear,
@@ -24,22 +22,6 @@ export function getDate() {
     secondYear,
     secondMonth,
     secondday,
-    // curHours,
-    // curMinutes
+
   };
 }
-
-// export function getTime(choiceDate) {
-//   const date = new Date(choiceDate)
-//   const curDate = new Date(Date.now())
-
-//   const curHours = date.getHours()
-//   const curMinutes = date.getMinutes()
-  
-//   const newDate = new Date(date.setHours(11))
-//   const startHours = newDate.getHours()
-//   const startMinutes = newDate.getMinutes()
-
-
-//   console.log(curDate < newDate)
-// }

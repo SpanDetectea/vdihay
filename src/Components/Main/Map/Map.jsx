@@ -1,16 +1,34 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./Map.scss";
+import { booking } from "../../../Slices/reservationSlice";
+import { useEffect } from "react";
+import { formatDateLocal } from "../../../javaScript/formatTime";
 
-function Map({ selectedTime, peopleCnt, date, orderTime, width = 800, height = 600 }) {
+function Map({
+  selectedTime,
+  peopleCnt,
+  date,
+  orderTime,
+  width = 800,
+  height = 600,
+}) {
   const walls = useSelector((state) => state.reservation.walls);
   const places = useSelector((state) => state.reservation.places);
-  const handleClick = (place) => {
-    console.log(place);
+
+  const dispatch = useDispatch();
+  const handleClick = (id, disabled, choicesDate, choicesDateEnd) => {
+    if (!disabled) {
+      const bookingObj = {
+        id,
+        choicesDate: formatDateLocal(choicesDate),
+        choicesDateEnd: formatDateLocal(choicesDateEnd),
+      };
+      dispatch(booking(bookingObj));
+    }
   };
 
-
   return (
-    <div className="Map">
+    <div className="map">
       <svg
         width={width}
         height={height}
@@ -29,32 +47,37 @@ function Map({ selectedTime, peopleCnt, date, orderTime, width = 800, height = 6
           />
         ))}
         {places.map((place, index) => {
+          let disabled = false;
           let color = "lightblue";
+          const choicesDate = new Date(date);
+          const choicesDateEnd = new Date(choicesDate);
           if (place.peopleCount >= peopleCnt && peopleCnt) {
-            const choicesDate = new Date(date);
             choicesDate.setHours(selectedTime.split(":")[0]);
             choicesDate.setMinutes(selectedTime.split(":")[1]);
- 
-            const choicesDateEnd = new Date(choicesDate);
-            
+
             if (orderTime % 1 === 0) {
-              choicesDateEnd.setHours(+selectedTime.split(":")[0]+orderTime)
+              choicesDateEnd.setHours(+selectedTime.split(":")[0] + +orderTime);
             } else {
-              choicesDateEnd.setHours(+selectedTime.split(":")[0]+orderTime)
-              choicesDateEnd.setMinutes(choicesDate.getMinutes()+30)
+              const hours = Math.floor(orderTime / 1);
+              choicesDateEnd.setHours(+selectedTime.split(":")[0] + hours);
+              choicesDateEnd.setMinutes(choicesDate.getMinutes() + 30);
             }
-            // console.log(choicesDateEnd)
 
             const times = place.reservedTimes.find((time) => {
               const startTime = new Date(time[0]);
               const endTime = new Date(time[1]);
               const returnValues =
-                startTime <= choicesDate && choicesDate <= endTime;
+                (startTime <= choicesDate && choicesDate < endTime) ||
+                (startTime < choicesDateEnd && choicesDateEnd <= endTime);
               return returnValues;
             });
             if (times === undefined) {
               color = "green";
-            } 
+            } else {
+              disabled = true;
+            }
+          } else {
+            disabled = true;
           }
           return (
             <rect
@@ -66,7 +89,10 @@ function Map({ selectedTime, peopleCnt, date, orderTime, width = 800, height = 6
               fill={color}
               stroke="black"
               strokeWidth="2"
-              // onClick={() => handleClick(place)}
+              className="map-place"
+              onClick={() =>
+                handleClick(place.id, disabled, choicesDate, choicesDateEnd)
+              }
             />
           );
         })}
