@@ -1,4 +1,4 @@
-function PlaceRect({ place, start, end, peopleCnt, onClick }) {
+function PlaceRect({ place, start, end, peopleCnt, onClick, curPlace }) {
   const isParamsSelected = start && end && peopleCnt;
   const meetsPeopleRequirement = peopleCnt && place.peopleCount >= peopleCnt;
 
@@ -9,7 +9,6 @@ function PlaceRect({ place, start, end, peopleCnt, onClick }) {
       return start < resEnd && resStart < end;
     });
   };
-
   const available =
     isParamsSelected &&
     meetsPeopleRequirement &&
@@ -20,17 +19,23 @@ function PlaceRect({ place, start, end, peopleCnt, onClick }) {
     color = "red";
   }
   const { x, y, width, height } = place.coord;
+
+  const handleClick = () => {
+    if (available && start && end) {
+      onClick(place.id);
+    }
+  };
   return (
     <rect
       x={x}
       y={y}
       width={width}
       height={height}
-      fill={color}
+      fill={curPlace === place.id ? "#00f0ff" : color}
       stroke="black"
       strokeWidth="2"
       className={!available ? "map-place map-place-disable" : "map-place"}
-      onClick={() => onClick(place.id, !available, start, end)}
+      onClick={handleClick}
     />
   );
 }

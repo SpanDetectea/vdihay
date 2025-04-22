@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import "./Reservation.scss";
-import { getDate } from "../../../javaScript/date";
+import { generateTimeSlots, getDate } from "../../../javaScript/date";
 import Map from "../Map/Map";
-import { formatTime } from "../../../javaScript/formatTime";
-import { useSelector } from "react-redux";
+import {
+  calculateBookingTime,
+  formatDateLocal,
+  formatTime,
+} from "../../../javaScript/formatTime";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../../common/Button/Button";
+import { booking } from "../../../Slices/reservationSlice";
 
 function Reservation() {
   const {
@@ -23,44 +29,13 @@ function Reservation() {
   const [orderTime, setOrderTime] = useState(orderTimeDuration[0]);
   const [timeSlots, setTimeSlots] = useState([]);
   const [peopleCnt, setPeopleCnt] = useState("");
+  const [curPlace, setCurPlace] = useState(undefined);
 
-  const todayStr = `${firstYear}-${firstMonth}-${firstday}`;
-
-  const generateTimeSlots = (selectedDate) => {
-    const slots = [];
-    const now = new Date();
-    const selectedDay = new Date(selectedDate);
-    const isToday = selectedDate === todayStr;
-
-    // Временные слоты с 11:00 до 23:45
-    for (let hour = 11; hour < 24; hour++) {
-      for (let min = 0; min < 60; min += 15) {
-        const slot = new Date(selectedDay);
-        slot.setHours(hour, min, 0, 0);
-        const disabled = isToday && slot < now;
-        if (!disabled) {
-          slots.push({ time: formatTime(hour, min), disabled });
-        }
-      }
-    }
-
-    // Временные слоты с 00:00 до 02:30 следующего дня
-    const nextDay = new Date(selectedDay);
-    nextDay.setDate(nextDay.getDate() + 1);
-    for (let hour = 0; hour < 3; hour++) {
-      for (let min = 0; min < 60; min += 15) {
-        const slot = new Date(nextDay);
-        slot.setHours(hour, min, 0, 0);
-        const disabled = isToday && slot < now;
-        slots.push({ time: formatTime(hour, min), disabled });
-      }
-    }
-    return slots;
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (date) {
-      const slots = generateTimeSlots(date);
+      const slots = generateTimeSlots(date, firstYear, firstMonth, firstday);
       setTimeSlots(slots);
       setSelectedTime("");
     }
@@ -69,19 +44,37 @@ function Reservation() {
   const handleDateChange = (e) => setDate(e.target.value);
   const handleTimeChange = (e) => setSelectedTime(e.target.value);
   const handlePeopleCntChange = (e) => {
-    const value = Math.floor(e.target.value)
-    const validateValue = value < 1 ? "" : value
+    const value = Math.floor(e.target.value);
+    const validateValue = value < 1 ? "" : value;
     setPeopleCnt(validateValue);
   };
   const handleOrderTime = (e) => setOrderTime(e.target.value);
+  const handleClickButton = (e) => {
+    e.preventDefault();
+    dispatch(
+      booking({
+        id: curPlace,
+        choicesDate: formatDateLocal(start),
+        choicesDateEnd: formatDateLocal(end),
+      })
+    );
+    setCurPlace(undefined);
+  };
+
+  const [start, end] =
+    date &&
+    selectedTime &&
+    orderTime &&
+    calculateBookingTime(date, selectedTime, orderTime);
 
   return (
     <div className="reservation">
       <Map
-        selectedTime={selectedTime}
+        start={start}
+        end={end}
         peopleCnt={peopleCnt}
-        date={date}
-        orderTime={orderTime}
+        curPlace={curPlace}
+        setCurPlace={setCurPlace}
       />
       <form className="reservation__form">
         <div className="reservation__form__date">
@@ -124,20 +117,27 @@ function Reservation() {
         )}
         {date && peopleCnt && (
           <div className="reservation__form__slots">
-            Сколько планируете посидеть
+            <p>Продолжительность брони (часы)</p>
             <select
               className="time-select"
               value={orderTime}
               onChange={handleOrderTime}
               disabled={timeSlots.length === 0}
             >
-              {/* <option value="">{orderTimeDuration[0]}</option> */}
-              {orderTimeDuration
-                // .filter((item, index) => index != 0)
-                .map((time, index) => (
-                  <option key={index}>{time}</option>
-                ))}
+              {orderTimeDuration.map((time, index) => (
+                <option key={index}>{time}</option>
+              ))}
             </select>
+          </div>
+        )}
+        {curPlace && (
+          <div className="reservation__form__info">
+            <p className="reservation__form__info-paragraph">
+              Столик на {peopleCnt} человек {date} с {selectedTime} по{" "}
+              {orderTime}
+              часа
+            </p>
+            <Button onClick={handleClickButton}/>
           </div>
         )}
       </form>

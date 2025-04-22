@@ -1,19 +1,21 @@
 @import "../../../styles/const.scss";
 
 .reservation {
-  height: 90vh;
+  height: 100%;
   width: calc(100% - 20px * 2);
+  max-width: 1024px;
   padding: 20px;
-  margin: 20px;
+  margin: 20px auto;
   border: 1px solid $text;
   border-radius: 25px;
   display: flex;
+  justify-content: space-around;
   &__form {
     display: flex;
     flex-direction: column;
     width: 20%;
     min-width: 160px;
-    // float: right;
+    width: 240px;
     &-input {
       margin: 10px 0;
       width: 100%;
@@ -68,7 +70,7 @@
       }
     }
     &__slots {
-      margin-top: 20px;
+      margin-top: 10px;
       color: $text;
       p {
         font-size: 1.2rem;
@@ -98,6 +100,16 @@
         & option:disabled {
           color: #b0b0b0;
         }
+      }
+    }
+    &__info {
+      display: flex;
+      flex-direction: column;
+      color: $text;
+      margin-top: 10px;
+      &-paragraph {
+        // padding: 0 5px;
+        margin-bottom: 20px;
       }
     }
   }
