@@ -16,6 +16,10 @@
     width: 20%;
     min-width: 160px;
     width: 240px;
+    @media screen and (max-width: 768px) {
+      min-width: none;
+      width: 170px;
+    }
     &-input {
       margin: 10px 0;
       width: 100%;
@@ -24,6 +28,7 @@
       padding: 15px;
       background: none;
       color: $text;
+      cursor: pointer;
       &:focus {
         border: 1px solid $color;
         outline: none;
@@ -40,9 +45,6 @@
       &-input {
         position: relative;
         text-align: center;
-        // &:nth-child(2) {
-        //     margin: 0 5px;
-        // }
         &::-webkit-calendar-picker-indicator {
           position: absolute;
           top: 0;
@@ -52,6 +54,7 @@
           width: auto;
           height: auto;
           background: transparent;
+          cursor: pointer;
         }
         &::-webkit-inner-spin-button,
         &::-webkit-clear-button {
@@ -108,7 +111,6 @@
       color: $text;
       margin-top: 10px;
       &-paragraph {
-        // padding: 0 5px;
         margin-bottom: 20px;
       }
     }

@@ -1,4 +1,4 @@
-function PlaceRect({ place, start, end, peopleCnt, onClick, curPlace }) {
+function PlaceRect({ place, start, end, peopleCnt, onClick, curPlace, delta }) {
   const isParamsSelected = start && end && peopleCnt;
   const meetsPeopleRequirement = peopleCnt && place.peopleCount >= peopleCnt;
 
@@ -27,10 +27,10 @@ function PlaceRect({ place, start, end, peopleCnt, onClick, curPlace }) {
   };
   return (
     <rect
-      x={x}
-      y={y}
-      width={width}
-      height={height}
+      x={x*delta}
+      y={y*delta}
+      width={width*delta}
+      height={height*delta}
       fill={curPlace === place.id ? "#00f0ff" : color}
       stroke="black"
       strokeWidth="2"

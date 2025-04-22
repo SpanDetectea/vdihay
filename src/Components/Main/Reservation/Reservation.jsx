@@ -41,14 +41,24 @@ function Reservation() {
     }
   }, [date]);
 
-  const handleDateChange = (e) => setDate(e.target.value);
-  const handleTimeChange = (e) => setSelectedTime(e.target.value);
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+    setCurPlace(undefined);
+  };
+  const handleTimeChange = (e) => {
+    setSelectedTime(e.target.value);
+    setCurPlace(undefined);
+  };
   const handlePeopleCntChange = (e) => {
     const value = Math.floor(e.target.value);
     const validateValue = value < 1 ? "" : value;
     setPeopleCnt(validateValue);
+    setCurPlace(undefined);
   };
-  const handleOrderTime = (e) => setOrderTime(e.target.value);
+  const handleOrderTime = (e) => {
+    setOrderTime(e.target.value);
+    setCurPlace(undefined);
+  };
   const handleClickButton = (e) => {
     e.preventDefault();
     dispatch(
@@ -137,7 +147,7 @@ function Reservation() {
               {orderTime}
               часа
             </p>
-            <Button onClick={handleClickButton}/>
+            <Button onClick={handleClickButton} />
           </div>
         )}
       </form>
