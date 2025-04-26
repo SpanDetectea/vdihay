@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/vdihay/static/css/main.dc258fb1.css",
+    "main.js": "/vdihay/static/js/main.5c4648ca.js",
+    "static/js/453.b4b6bfed.chunk.js": "/vdihay/static/js/453.b4b6bfed.chunk.js",
+    "index.html": "/vdihay/index.html",
+    "main.dc258fb1.css.map": "/vdihay/static/css/main.dc258fb1.css.map",
+    "main.5c4648ca.js.map": "/vdihay/static/js/main.5c4648ca.js.map",
+    "453.b4b6bfed.chunk.js.map": "/vdihay/static/js/453.b4b6bfed.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc258fb1.css",
+    "static/js/main.5c4648ca.js"
+  ]
+}
