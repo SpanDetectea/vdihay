@@ -1,0 +1,34 @@
+@import "./styles/const.scss";
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  box-sizing: border-box;
+}
+a {
+  all: unset; /* Все стили элемента сбрасываются в ноль. */
+}
+.App {
+  background-color: #040d15;
+}
+.input {
+  margin: 10px 0;
+  width: 100%;
+  border: 1px solid $text;
+  border-radius: 25px;
+  padding: 15px;
+  background: none;
+  color: $text;
+  cursor: pointer;
+  &:focus {
+    border: 1px solid $color;
+    outline: none;
+  }
+  &::placeholder {
+    color: $text;
+  }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+}

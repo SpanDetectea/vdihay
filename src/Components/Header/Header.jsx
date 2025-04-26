@@ -1,7 +1,10 @@
 import { Link } from "react-router";
 import "./Header.scss";
+import { useSelector } from "react-redux";
 
 function Header() {
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  const userName = useSelector((state) => state.auth.user.name);
   return (
     <div className="header">
       <ul className="header__ul">
@@ -16,6 +19,9 @@ function Header() {
         </Link>
         <Link to="/contacts">
           <li className="header__ul__li">Контакты</li>
+        </Link>
+        <Link to="/auth">
+          <li className="header__ul__li">{isAuth ? userName : "Войти"}</li>
         </Link>
       </ul>
     </div>

@@ -1,7 +1,7 @@
 import './Button.scss'
 
-function Button({onClick}) {
-    return <button className="neon-button" onClick={onClick}>Забронировать</button>;
+function Button({onClick, text}) {
+    return <button className="neon-button" onClick={onClick}>{text}</button>;
 }
 
 export default Button;

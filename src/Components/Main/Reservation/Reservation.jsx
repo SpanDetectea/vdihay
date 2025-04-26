@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../common/Button/Button";
 import { booking } from "../../../Slices/reservationSlice";
+import { useNavigate } from "react-router";
 
 function Reservation() {
   const {
@@ -24,6 +25,8 @@ function Reservation() {
   const orderTimeDuration = useSelector(
     (state) => state.reservation.orderTimeDuration
   );
+  const isAuth = useSelector((state) => state.auth.isAuth);
+
   const [date, setDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [orderTime, setOrderTime] = useState(orderTimeDuration[0]);
@@ -32,6 +35,7 @@ function Reservation() {
   const [curPlace, setCurPlace] = useState(undefined);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (date) {
@@ -60,15 +64,28 @@ function Reservation() {
     setCurPlace(undefined);
   };
   const handleClickButton = (e) => {
-    e.preventDefault();
-    dispatch(
-      booking({
-        id: curPlace,
-        choicesDate: formatDateLocal(start),
-        choicesDateEnd: formatDateLocal(end),
-      })
-    );
-    setCurPlace(undefined);
+    if (isAuth) {
+      e.preventDefault();
+      dispatch(
+        booking({
+          id: curPlace,
+          choicesDate: formatDateLocal(start),
+          choicesDateEnd: formatDateLocal(end),
+        })
+      );
+      setCurPlace(undefined);
+    } else {
+      navigate("/auth");
+    }
+    // e.preventDefault();
+    // dispatch(
+    //   booking({
+    //     id: curPlace,
+    //     choicesDate: formatDateLocal(start),
+    //     choicesDateEnd: formatDateLocal(end),
+    //   })
+    // );
+    // setCurPlace(undefined);
   };
 
   const [start, end] =
@@ -147,7 +164,7 @@ function Reservation() {
               {orderTime}
               часа
             </p>
-            <Button onClick={handleClickButton} />
+            <Button onClick={handleClickButton} text="Забронировать" />
           </div>
         )}
       </form>
