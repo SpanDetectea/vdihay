@@ -1,35 +1,63 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Auth.scss";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../javaScript/firebase";
 import LogoutButton from "./LogoutButton/LogoutButton";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 import { useDispatch, useSelector } from "react-redux";
-import { logIn, logOut } from "../../Slices/authSlice";
+import { formatTimeRange } from "../../javaScript/formatTime";
+import { unReserve } from "../../Slices/reservationSlice";
+import { deleteReserv } from "../../Slices/authSlice";
 
 function Auth() {
   const [isAccount, setIsAccount] = useState(true);
   const isAuth = useSelector((state) => state.auth.isAuth);
   const user = useSelector((state) => state.auth.user);
+  const myReserv = useSelector((state) => state.auth.reserv);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     if (currentUser) {
-  //       dispatch(logIn(currentUser));
-  //     } else {
-  //       dispatch(logOut());
-  //     }
-  //   });
+  const handleClick = (item) => {
+    const table = item.table;
+    const times = item.times;
+    dispatch(
+      unReserve({
+        table,
+        times,
+      })
+    );
+    dispatch(
+      deleteReserv({
+        table,
+        times,
+      })
+    );
+  };
 
-  //   return () => unsubscribe();
-  // }, [dispatch]);
   return (
     <div className="auth">
       {isAuth ? (
-        <div>
-          <h1>Добро пожаловать, {user.name ? user.name : "Гость"}</h1>
+        <div className="auth__profile">
+          <h1 className="auth__profile-header">
+            Добро пожаловать, {user.name ? user.name : "Гость"}
+          </h1>
+          {myReserv.length >= 1 && (
+            <div>
+              <p className="auth__profile-title">Активные брони:</p>
+              <ul className="auth__profile-ul">
+                {myReserv.map((item, index) => (
+                  <li
+                    key={index}
+                    className="auth__profile-ul-li"
+                   
+                  >
+                    {formatTimeRange(item.times)}
+                    <button class="auth__profile-ul-li-close"  onClick={() => handleClick(item)}>&times;</button>
+                  </li>
+                ))}
+                <li></li>
+              </ul>
+            </div>
+          )}
+
           <LogoutButton />
         </div>
       ) : (
@@ -37,7 +65,9 @@ function Auth() {
           {isAccount ? (
             <div>
               <SignIn />
-              <div onClick={() => setIsAccount(!isAccount)}>У меня нет аккаунта</div>
+              <div onClick={() => setIsAccount(!isAccount)}>
+                У меня нет аккаунта
+              </div>
             </div>
           ) : (
             <div>

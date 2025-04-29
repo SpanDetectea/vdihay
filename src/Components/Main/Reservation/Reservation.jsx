@@ -10,8 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../common/Button/Button";
 import { booking } from "../../../Slices/reservationSlice";
 import { useNavigate } from "react-router";
+import { addReserv } from "../../../Slices/authSlice";
 
 function Reservation() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     firstYear,
     firstMonth,
@@ -25,6 +28,7 @@ function Reservation() {
     (state) => state.reservation.orderTimeDuration
   );
   const isAuth = useSelector((state) => state.auth.isAuth);
+  const myReserv = useSelector((state) => state.auth.reserv);
 
   const [date, setDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
@@ -32,9 +36,6 @@ function Reservation() {
   const [timeSlots, setTimeSlots] = useState([]);
   const [peopleCnt, setPeopleCnt] = useState("");
   const [curPlace, setCurPlace] = useState(undefined);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (date) {
@@ -63,16 +64,23 @@ function Reservation() {
     setCurPlace(undefined);
   };
   const handleClickButton = (e) => {
+    e.preventDefault();
     if (isAuth) {
-      e.preventDefault();
-      dispatch(
-        booking({
-          id: curPlace,
-          choicesDate: formatDateLocal(start),
-          choicesDateEnd: formatDateLocal(end),
-        })
-      );
-      setCurPlace(undefined);
+      if (myReserv.length < 2) {
+        dispatch(
+          booking({
+            id: curPlace,
+            choicesDate: formatDateLocal(start),
+            choicesDateEnd: formatDateLocal(end),
+          })
+        );
+        const newObj = {
+          times:[formatDateLocal(start), formatDateLocal(end)],
+          table: curPlace
+        }
+        dispatch(addReserv(newObj));
+        setCurPlace(undefined);
+      }
     } else {
       navigate("/auth");
     }
@@ -94,6 +102,9 @@ function Reservation() {
         setCurPlace={setCurPlace}
       />
       <form className="reservation__form">
+        {myReserv.length >= 2 && (
+          <p className="reservation__form-p">У вас не может быть больше 2-ух активных броней!</p>
+        )}
         <div className="reservation__form__date">
           <input
             type="date"

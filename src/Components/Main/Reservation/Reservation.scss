@@ -47,6 +47,10 @@
     //     -webkit-appearance: none;
     //   }
     // }
+    &-p {
+      color: rgb(110, 20, 20);
+      font-size: 14px;
+    }
     &__date {
       &-input {
         position: relative;

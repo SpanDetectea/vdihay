@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isAuth: false,
   user: {},
-  isLoading: true
+  isLoading: true,
+  reserv: [],
 };
 
 export const authSlice = createSlice({
@@ -15,14 +16,10 @@ export const authSlice = createSlice({
       const obj = {
         name: payload.displayName,
         email: payload.email,
-        id: payload.uid
-        // name: payload.displayName,
-        // email: payload.email,
-        // id: payload.uid
-      }
+        id: payload.uid,
+      };
       state.user = obj;
       state.isLoading = false;
-      // console.log(payload)
     },
     logOut: (state) => {
       state.isAuth = false;
@@ -30,11 +27,27 @@ export const authSlice = createSlice({
       state.isLoading = false;
     },
     setLoading: (state, { payload }) => {
-      state.isLoading = payload; // true или false
+      state.isLoading = payload;
+    },
+    addReserv: (state, { payload }) => {
+      const newObj = {
+        times: [payload.times[0], payload.times[1]],
+        table: payload.table,
+      };
+      state.reserv.push(newObj);
+    },
+    deleteReserv: (state, { payload }) => {
+      console.log(payload);
+      const index = state.reserv.findIndex(
+        (res) => JSON.stringify(res.times) === JSON.stringify(payload.times)
+      );
+      state.reserv = state.reserv.filter((i, id) => id !== index)
+      
     },
   },
 });
 
-export const { logIn, logOut, setLoading } = authSlice.actions;
+export const { logIn, logOut, setLoading, addReserv, deleteReserv } =
+  authSlice.actions;
 
 export default authSlice.reducer;

@@ -31,3 +31,19 @@ export const calculateBookingTime = (baseDate, selectedTime, orderTime) => {
 
   return [start, end];
 };
+
+export function formatTimeRange([start, end]) {
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+
+  const date = startDate.toISOString().split('T')[0];
+
+  const formatTime = (date) =>
+    date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+
+  const startTime = formatTime(startDate);
+  const endTime = formatTime(endDate);
+
+  return `${date} ${startTime} - ${endTime}`;
+}
+

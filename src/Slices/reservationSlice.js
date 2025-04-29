@@ -140,9 +140,14 @@ export const reservationSlice = createSlice({
         place.reservedTimes.push(newReservationTime);
       }
     },
+    unReserve: (state, {payload}) => {
+      const index = state.places.findIndex(place => place.id === payload.table)
+      state.places[index].reservedTimes = state.places[index].reservedTimes.filter(time => JSON.stringify(time) !== JSON.stringify(payload.times))
+    
+    }
   },
 });
 
-export const { booking } = reservationSlice.actions;
+export const { booking, unReserve } = reservationSlice.actions;
 
 export default reservationSlice.reducer;

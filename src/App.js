@@ -8,12 +8,11 @@ import { useSelector } from "react-redux";
 
 function App() {
   const isLoading = useSelector((state) => state.auth.isLoading);
-  console.log(isLoading)
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="*" element={<Main />} />
         <Route path="/auth" element={<Auth />} />
       </Routes>
       {isLoading && <Preloader />}
