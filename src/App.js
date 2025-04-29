@@ -16,6 +16,7 @@ function App() {
         <Route path="/auth" element={<Auth />} />
       </Routes>
       {isLoading && <Preloader />}
+      {/* <Preloader /> */}
     </div>
   );
 }

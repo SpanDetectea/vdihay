@@ -9,12 +9,13 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../common/Button/Button";
 import { booking } from "../../../Slices/reservationSlice";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { addReserv } from "../../../Slices/authSlice";
 
 function Reservation() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     firstYear,
     firstMonth,
@@ -75,14 +76,14 @@ function Reservation() {
           })
         );
         const newObj = {
-          times:[formatDateLocal(start), formatDateLocal(end)],
-          table: curPlace
-        }
+          times: [formatDateLocal(start), formatDateLocal(end)],
+          table: curPlace,
+        };
         dispatch(addReserv(newObj));
         setCurPlace(undefined);
       }
     } else {
-      navigate("/auth");
+      navigate("/auth", { state: { from: location.pathname } });
     }
   };
 
@@ -103,7 +104,9 @@ function Reservation() {
       />
       <form className="reservation__form">
         {myReserv.length >= 2 && (
-          <p className="reservation__form-p">У вас не может быть больше 2-ух активных броней!</p>
+          <p className="reservation__form-p">
+            У вас не может быть больше 2-ух активных броней!
+          </p>
         )}
         <div className="reservation__form__date">
           <input

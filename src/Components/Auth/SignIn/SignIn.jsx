@@ -3,18 +3,34 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../javaScript/firebase";
 import Button from "../../common/Button/Button";
+import { useDispatch } from "react-redux";
+import { setLoading } from "../../../Slices/authSlice";
+import { useLocation, useNavigate } from "react-router";
 
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from || "/";
 
   const handleSignIn = async () => {
     try {
+      dispatch(setLoading(true));
       await signInWithEmailAndPassword(auth, email, password);
       alert("Вы успешно вошли!");
+      const loginSuccessful = true;
+
+      if (loginSuccessful) {
+        navigate(from, { replace: true }); // Вернуться обратно
+      }
     } catch (error) {
       console.error(error.message);
       alert("Ошибка входа");
+    } finally {
+      dispatch(setLoading(false));
     }
   };
 
@@ -28,14 +44,12 @@ function SignIn() {
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
-      className="signIn-password input"
+        className="signIn-password input"
         type="password"
         placeholder="Пароль"
         onChange={(e) => setPassword(e.target.value)}
       />
-      {/* <button onClick={handleSignIn}>Войти</button> */}
-      {/* <Button onCLick={handleSignIn}/> */}
-      <Button onClick={handleSignIn}  text='Войти'/>
+      <Button onClick={handleSignIn} text="Войти" />
     </div>
   );
 }

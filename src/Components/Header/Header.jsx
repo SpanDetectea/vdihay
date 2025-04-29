@@ -2,9 +2,6 @@ import { Link } from "react-router";
 import "./Header.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../javaScript/firebase";
-import { logIn, logOut } from "../../Slices/authSlice";
 import { checkAuth } from "../../Slices/checkAuth";
 
 function Header() {
@@ -14,16 +11,6 @@ function Header() {
   useEffect(() => {
     dispatch(checkAuth())
   }, [dispatch]);
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     if (currentUser) {
-  //       dispatch(logIn(currentUser));
-  //     } else {
-  //       dispatch(logOut());
-  //     }
-  //   });
-  //   return () => unsubscribe();
-  // }, [dispatch]);
   return (
     <div className="header">
       <ul className="header__ul">
