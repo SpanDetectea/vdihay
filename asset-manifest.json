@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/vdihay/static/css/main.27e05144.css",
-    "main.js": "/vdihay/static/js/main.6b5d39d4.js",
+    "main.css": "/vdihay/static/css/main.9cbe9cf2.css",
+    "main.js": "/vdihay/static/js/main.39fd36dd.js",
     "static/js/453.b4b6bfed.chunk.js": "/vdihay/static/js/453.b4b6bfed.chunk.js",
     "index.html": "/vdihay/index.html",
-    "main.27e05144.css.map": "/vdihay/static/css/main.27e05144.css.map",
-    "main.6b5d39d4.js.map": "/vdihay/static/js/main.6b5d39d4.js.map",
+    "main.9cbe9cf2.css.map": "/vdihay/static/css/main.9cbe9cf2.css.map",
+    "main.39fd36dd.js.map": "/vdihay/static/js/main.39fd36dd.js.map",
     "453.b4b6bfed.chunk.js.map": "/vdihay/static/js/453.b4b6bfed.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.27e05144.css",
-    "static/js/main.6b5d39d4.js"
+    "static/css/main.9cbe9cf2.css",
+    "static/js/main.39fd36dd.js"
   ]
 }
