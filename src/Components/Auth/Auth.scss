@@ -5,6 +5,9 @@
   padding-top: 100px;
   color: $text;
   margin: 0 auto;
+  @media screen and (max-width: 768px) {
+    padding: 100px 10px 0 10px;
+  }
   &__profile {
     &-header {
       margin-bottom: 20px;
@@ -32,4 +35,17 @@
       }
     }
   }
+  &__signin {
+    text-align: center;
+    &-acc {
+        margin: 30px 0;
+    }
+  }
+  &__signup {
+    text-align: center;
+    &-acc {
+        margin: 30px 0;
+    }
+  }
+
 }

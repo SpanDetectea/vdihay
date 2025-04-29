@@ -18,8 +18,9 @@
     font-weight: 400;
     font-style: normal;
     @media screen and (max-width: 768px) {
-    gap: 10px;
-    font-size: 25px;
+    gap: 5px;
+    font-size: 23px;
+    width: calc(100% - 20px * 2);
     }
     &__li {
       list-style-type: none;

@@ -63,16 +63,16 @@ function Auth() {
       ) : (
         <div>
           {isAccount ? (
-            <div>
+            <div className="auth__signin">
               <SignIn />
-              <div onClick={() => setIsAccount(!isAccount)}>
+              <div onClick={() => setIsAccount(!isAccount)} className="auth__signin-acc">
                 У меня нет аккаунта
               </div>
             </div>
           ) : (
-            <div>
+            <div className="auth__signup">
               <SignUp />
-              <div onClick={() => setIsAccount(!isAccount)}>
+              <div onClick={() => setIsAccount(!isAccount)} className="auth__signup-acc">
                 У меня уже есть аккаунт
               </div>
             </div>
