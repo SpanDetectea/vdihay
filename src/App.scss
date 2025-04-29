@@ -20,12 +20,18 @@ a {
   background: none;
   color: $text;
   cursor: pointer;
+  @media screen and (max-width: 768px) {
+    padding: 5px;
+    font-size: 12px;
+    margin: 5px 0;
+  }
   &:focus {
     border: 1px solid $color;
     outline: none;
   }
   &::placeholder {
     color: $text;
+    text-align: center;
   }
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

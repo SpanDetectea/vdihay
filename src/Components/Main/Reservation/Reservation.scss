@@ -10,6 +10,11 @@
   border-radius: 25px;
   display: flex;
   justify-content: space-around;
+  @media screen and (max-width: 768px) {
+    width: calc(100% - 10px * 2);
+    margin: 10px;
+    padding: 10px;
+  }
   &__form {
     display: flex;
     flex-direction: column;
@@ -17,30 +22,31 @@
     min-width: 160px;
     width: 240px;
     @media screen and (max-width: 768px) {
-      min-width: none;
-      width: 170px;
+      min-width: 130px;
+      // width: 130px;
+      margin: 0 5px;
     }
-    &-input {
-      margin: 10px 0;
-      width: 100%;
-      border: 1px solid $text;
-      border-radius: 25px;
-      padding: 15px;
-      background: none;
-      color: $text;
-      cursor: pointer;
-      &:focus {
-        border: 1px solid $color;
-        outline: none;
-      }
-      &::placeholder {
-        color: $text;
-      }
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-      }
-    }
+    // &-input {
+    //   margin: 10px 0;
+    //   width: 100%;
+    //   border: 1px solid $text;
+    //   border-radius: 25px;
+    //   padding: 15px;
+    //   background: none;
+    //   color: $text;
+    //   cursor: pointer;
+    //   &:focus {
+    //     border: 1px solid $color;
+    //     outline: none;
+    //   }
+    //   &::placeholder {
+    //     color: $text;
+    //   }
+    //   &::-webkit-outer-spin-button,
+    //   &::-webkit-inner-spin-button {
+    //     -webkit-appearance: none;
+    //   }
+    // }
     &__date {
       &-input {
         position: relative;
@@ -75,9 +81,16 @@
     &__slots {
       margin-top: 10px;
       color: $text;
+      @media screen and (max-width: 768px) {
+        margin-top: 0;
+      }
       p {
         font-size: 1.2rem;
         margin-bottom: 10px;
+        @media screen and (max-width: 768px) {
+          font-size: 12px;
+          margin: 5px 0;
+        }
       }
 
       .time-select {
@@ -89,7 +102,10 @@
         color: $text;
         font-size: 1rem;
         cursor: pointer;
-
+        @media screen and (max-width: 768px) {
+          padding: 5px;
+          font-size: 12px;
+        }
         &:focus {
           outline: none;
           border-color: $color;
@@ -112,6 +128,9 @@
       margin-top: 10px;
       &-paragraph {
         margin-bottom: 20px;
+        @media screen and (max-width: 768px) {
+          font-size: 12px;
+        }
       }
     }
   }

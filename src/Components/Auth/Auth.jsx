@@ -14,17 +14,17 @@ function Auth() {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        dispatch(logIn(currentUser));
-      } else {
-        dispatch(logOut());
-      }
-    });
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     if (currentUser) {
+  //       dispatch(logIn(currentUser));
+  //     } else {
+  //       dispatch(logOut());
+  //     }
+  //   });
 
-    return () => unsubscribe();
-  }, [dispatch]);
+  //   return () => unsubscribe();
+  // }, [dispatch]);
   return (
     <div className="auth">
       {isAuth ? (

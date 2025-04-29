@@ -19,7 +19,6 @@ function Map({
     setCurPlace(id);
   };
   const screenWidth = useResize();
-  console.log(screenWidth.width)
   let delta = 1;
   if (screenWidth.isScreenXxl) {
     delta = 1;
@@ -28,10 +27,9 @@ function Map({
       if (screenWidth.isScreenLg) {
         delta = 0.6;
         if (screenWidth.isScreenMd) {
-          delta = 0.7;
-
+          delta = 0.4;
           if (screenWidth.isScreenSm) {
-            delta = 0.6;
+            delta = 0.4;
           }
         }
       }

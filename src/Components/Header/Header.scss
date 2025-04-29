@@ -8,16 +8,19 @@
   background: $bg;
   width: 100%;
   -webkit-box-shadow: 0px 10px 6px 2px rgba(4, 13, 21, 0.9);
--moz-box-shadow: 0px 10px 6px 2px rgba(4, 13, 21, 0.9);
-box-shadow: 0px 10px 6px 2px rgba(4, 13, 21, 0.9);
+  -moz-box-shadow: 0px 10px 6px 2px rgba(4, 13, 21, 0.9);
+  box-shadow: 0px 10px 6px 2px rgba(4, 13, 21, 0.9);
   &__ul {
-    // position: fixed;
     display: flex;
     gap: 30px;
     justify-content: center;
     font-family: "Alumni Sans Pinstripe", sans-serif;
     font-weight: 400;
     font-style: normal;
+    @media screen and (max-width: 768px) {
+    gap: 10px;
+    font-size: 25px;
+    }
     &__li {
       list-style-type: none;
       &:hover {

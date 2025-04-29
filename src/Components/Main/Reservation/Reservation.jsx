@@ -5,7 +5,6 @@ import Map from "../Map/Map";
 import {
   calculateBookingTime,
   formatDateLocal,
-  formatTime,
 } from "../../../javaScript/formatTime";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../common/Button/Button";
@@ -77,15 +76,6 @@ function Reservation() {
     } else {
       navigate("/auth");
     }
-    // e.preventDefault();
-    // dispatch(
-    //   booking({
-    //     id: curPlace,
-    //     choicesDate: formatDateLocal(start),
-    //     choicesDateEnd: formatDateLocal(end),
-    //   })
-    // );
-    // setCurPlace(undefined);
   };
 
   const [start, end] =
@@ -107,7 +97,7 @@ function Reservation() {
         <div className="reservation__form__date">
           <input
             type="date"
-            className={`reservation__form__date-input reservation__form-input ${
+            className={`reservation__form__date-input input ${
               date !== "" ? "has-value" : ""
             }`}
             onChange={handleDateChange}
@@ -118,7 +108,7 @@ function Reservation() {
         </div>
         <input
           type="number"
-          className="reservation__form-input"
+          className="input"
           placeholder="Количество человек"
           value={peopleCnt}
           onInput={handlePeopleCntChange}
@@ -160,9 +150,8 @@ function Reservation() {
         {curPlace && (
           <div className="reservation__form__info">
             <p className="reservation__form__info-paragraph">
-              Столик на {peopleCnt} человек {date} с {selectedTime} по{" "}
-              {orderTime}
-              часа
+              Столик на {peopleCnt} человек {date} с {selectedTime} на{" "}
+              {orderTime} часа
             </p>
             <Button onClick={handleClickButton} text="Забронировать" />
           </div>
