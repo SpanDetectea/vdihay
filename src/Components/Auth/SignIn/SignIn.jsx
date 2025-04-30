@@ -33,6 +33,11 @@ function SignIn() {
       dispatch(setLoading(false));
     }
   };
+  const handleKeyPress = (e) => {
+    if(e.key === 'Enter'){
+      handleSignIn()
+    }
+  }
 
   return (
     <div className="signIn">
@@ -48,6 +53,7 @@ function SignIn() {
         type="password"
         placeholder="Пароль"
         onChange={(e) => setPassword(e.target.value)}
+        onKeyDown={handleKeyPress}
       />
       <Button onClick={handleSignIn} text="Войти" />
     </div>

@@ -40,6 +40,11 @@ function SignUp() {
       dispatch(setLoading(false))
     }
   };
+  const handleKeyPress = (e) => {
+    if(e.key === 'Enter'){
+      handleSignUp()
+    }
+  }
   const handleName = (e) => setName(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
@@ -65,6 +70,7 @@ function SignUp() {
           placeholder="Пароль"
           onChange={handlePassword}
           className="input signUp__wrapper-input"
+          onKeyDown={handleKeyPress}
         />
       </div>
       <Button

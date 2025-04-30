@@ -1,0 +1,127 @@
+.about {
+    background-color: #040d15; 
+    color: #6fcbd1; 
+    font-family: 'Segoe UI', sans-serif;
+    padding: 2rem;
+    line-height: 1.6;
+  
+    h2 {
+      font-size: 2rem;
+      color: #00f0ff; 
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+  
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+  
+    strong {
+      color: #00f0ff; 
+    }
+  
+    em {
+      color: #a8dadc;
+    }
+  
+    &__us,
+    &__features,
+    &__gallery,
+    &__cta {
+      margin-bottom: 3rem;
+    }
+  
+    &__features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 1rem 0;
+  
+      ul {
+        list-style: none;
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        width: 100%;
+  
+        li {
+          font-size: 1.2rem;
+          background-color: #1f2d35; // немного светлее фон
+          border-radius: 10px;
+          padding: 1rem;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+          transition: transform 0.3s ease;
+  
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+          }
+  
+          i {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  
+    .gallery__images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-around;
+  
+      img {
+        width: calc(33.333% - 1rem);
+        border-radius: 12px;
+        object-fit: cover;
+        max-height: 200px;
+        transition: transform 0.3s ease;
+  
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  
+    &__cta {
+      text-align: center;
+  
+      p {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+  
+      .about__button {
+        background-color: #00f0ff;
+        color: #040d15;
+        border: none;
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+  
+        &:hover {
+          background-color: #6fcbd1;
+          transform: scale(1.05);
+        }
+      }
+    }
+  
+    @media (max-width: 768px) {
+      padding: 1rem;
+  
+      .gallery__images {
+        flex-direction: column;
+  
+        img {
+          width: 100%;
+          max-height: 250px;
+        }
+      }
+    }
+  }
+  
