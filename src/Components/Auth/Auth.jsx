@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Auth.scss";
 import LogoutButton from "./LogoutButton/LogoutButton";
 import SignIn from "./SignIn/SignIn";
@@ -14,6 +14,10 @@ function Auth() {
   const user = useSelector((state) => state.auth.user);
   const myReserv = useSelector((state) => state.auth.reserv);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleClick = (item) => {
     const table = item.table;

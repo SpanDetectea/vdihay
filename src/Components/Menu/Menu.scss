@@ -1,0 +1,100 @@
+$color: #00f0ff;
+$text: #6fcbd1;
+$bg: #040d15;
+$border-color: #6fcbd1;
+
+.menu {
+  background: $bg;
+  color: $text;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 100px;
+
+  @media screen and (max-width: 768px) {
+    margin: 0 20px
+  }
+  &__background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    // z-index: 0;
+
+    &-item {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      filter: blur(3xl);
+    }
+    
+    &-item--blue {
+      background-color: $color;
+      width: 96px;
+      height: 96px;
+      top: 20%;
+      left: 10%;
+    }
+
+    &-item--lightblue {
+      background-color: $text;
+      width: 80px;
+      height: 80px;
+      bottom: 15%;
+      right: 5%;
+    }
+  }
+
+  &__content {
+    position: relative;
+    // z-index: 10;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: $color;
+    margin-bottom: 2rem;
+  }
+
+  &__section {
+    margin-bottom: 2.5rem;
+  }
+
+  &__section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $color;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid $border-color;
+    padding-bottom: 0.5rem;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    background-color: $bg;
+    border: 1px solid $border-color;
+    color: $text;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}

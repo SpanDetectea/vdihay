@@ -21,7 +21,7 @@ a {
   color: $text;
   cursor: pointer;
   @media screen and (max-width: 768px) {
-    padding: 5px;
+    // padding: 5px;
     font-size: 12px;
     margin: 5px 0;
   }

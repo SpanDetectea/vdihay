@@ -23,9 +23,6 @@ function Header() {
         <Link to="/about">
           <li className="header__ul__li">О нас</li>
         </Link>
-        <Link to="/contacts">
-          <li className="header__ul__li">Контакты</li>
-        </Link>
         <Link to="/auth">
           <li className="header__ul__li">{isAuth ? userName : "Войти"}</li>
         </Link>
