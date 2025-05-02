@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import "./Map.scss";
-import PlaceRect from "./PlaceRect";
-import { useResize } from "../../../Hooks/useResize";
+import PlaceRect from "./PlaceRect/PlaceRect";
+import { useResize } from "../../../../Hooks/useResize";
 
 function Map({
   peopleCnt,

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Reservation.scss";
 import { generateTimeSlots, getDate } from "../../../javaScript/date";
-import Map from "../Map/Map";
 import {
   calculateBookingTime,
   formatDateLocal,
@@ -11,6 +10,7 @@ import Button from "../../common/Button/Button";
 import { booking } from "../../../Slices/reservationSlice";
 import { useLocation, useNavigate } from "react-router";
 import { addReserv } from "../../../Slices/authSlice";
+import Map from "./Map/Map";
 
 function Reservation() {
   const dispatch = useDispatch();
@@ -25,9 +25,7 @@ function Reservation() {
     secondday,
   } = getDate();
 
-  const orderTimeDuration = useSelector(
-    (state) => state.reservation.orderTimeDuration
-  );
+  const orderTimeDuration = useSelector((state) => state.reservation.orderTimeDuration);
   const isAuth = useSelector((state) => state.auth.isAuth);
   const myReserv = useSelector((state) => state.auth.reserv);
 
@@ -92,7 +90,6 @@ function Reservation() {
     selectedTime &&
     orderTime &&
     calculateBookingTime(date, selectedTime, orderTime);
-
   return (
     <div className="reservation">
       <Map

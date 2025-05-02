@@ -1,37 +1,33 @@
+import { isTimeAvailable } from "../../../../../javaScript/formatTime";
+
 function PlaceRect({ place, start, end, peopleCnt, onClick, curPlace, delta }) {
   const isParamsSelected = start && end && peopleCnt;
   const meetsPeopleRequirement = peopleCnt && place.peopleCount >= peopleCnt;
 
-  const isTimeAvailable = (reservedTimes, start, end) => {
-    return !reservedTimes.some(([reservedStart, reservedEnd]) => {
-      const resStart = new Date(reservedStart);
-      const resEnd = new Date(reservedEnd);
-      return start < resEnd && resStart < end;
-    });
-  };
   const available =
     isParamsSelected &&
     meetsPeopleRequirement &&
     isTimeAvailable(place.reservedTimes, start, end);
 
-  let color = "lightblue";
-  if (isParamsSelected && !available) {
-    color = "red";
-  }
+  const getColor = () => {
+    if (curPlace === place.id) return "#00f0ff";
+    if (isParamsSelected && !available) return "red";
+    return "lightblue";
+  };
   const { x, y, width, height } = place.coord;
 
   const handleClick = () => {
-    if (available && start && end) {
+    if (available) {
       onClick(place.id);
     }
   };
   return (
     <rect
-      x={x*delta}
-      y={y*delta}
-      width={width*delta}
-      height={height*delta}
-      fill={curPlace === place.id ? "#00f0ff" : color}
+      x={x * delta}
+      y={y * delta}
+      width={width * delta}
+      height={height * delta}
+      fill={getColor()}
       stroke="black"
       strokeWidth="2"
       className={!available ? "map-place map-place-disable" : "map-place"}

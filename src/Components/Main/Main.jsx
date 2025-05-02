@@ -3,9 +3,9 @@ import "./Main.scss";
 import Reservation from "./Reservation/Reservation";
 
 function Main() {
-   useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="main">
       <h1 className="main__h">Vdihay</h1>

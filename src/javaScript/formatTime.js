@@ -3,6 +3,7 @@ export const formatTime = (hour, min) =>
 
 const pad = (num) => String(num).padStart(2, "0");
 export const formatDateLocal = (date) => {
+
   const year = date.getFullYear();
   const month = pad(date.getMonth() + 1);
   const day = pad(date.getDate());
@@ -14,7 +15,6 @@ export const formatDateLocal = (date) => {
 };
 
 export const calculateBookingTime = (baseDate, selectedTime, orderTime) => {
-
   const [hourStr, minuteStr] = selectedTime.split(":");
   const hour = parseInt(hourStr, 10);
   const minute = parseInt(minuteStr, 10);
@@ -32,18 +32,25 @@ export const calculateBookingTime = (baseDate, selectedTime, orderTime) => {
   return [start, end];
 };
 
-export function formatTimeRange([start, end]) {
+export function formatTimeRange([start, end], withDate = true) {
   const startDate = new Date(start);
   const endDate = new Date(end);
 
-  const date = startDate.toISOString().split('T')[0];
-
   const formatTime = (date) =>
-    date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+    date.toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" });
 
   const startTime = formatTime(startDate);
   const endTime = formatTime(endDate);
-
-  return `${date} ${startTime} - ${endTime}`;
+  if (withDate) {
+    const date = startDate.toISOString().split("T")[0];
+    return `${date} ${startTime} - ${endTime}`;
+  }
+  return `${startTime} - ${endTime}`;
 }
-
+export const isTimeAvailable = (reservedTimes, start, end) => {
+  return !reservedTimes.some(([reservedStart, reservedEnd]) => {
+    const resStart = new Date(reservedStart);
+    const resEnd = new Date(reservedEnd);
+    return start < resEnd && resStart < end;
+  });
+};

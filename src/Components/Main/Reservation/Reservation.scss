@@ -23,30 +23,9 @@
     width: 240px;
     @media screen and (max-width: 768px) {
       min-width: 130px;
-      // width: 130px;
       margin: 0 5px;
     }
-    // &-input {
-    //   margin: 10px 0;
-    //   width: 100%;
-    //   border: 1px solid $text;
-    //   border-radius: 25px;
-    //   padding: 15px;
-    //   background: none;
-    //   color: $text;
-    //   cursor: pointer;
-    //   &:focus {
-    //     border: 1px solid $color;
-    //     outline: none;
-    //   }
-    //   &::placeholder {
-    //     color: $text;
-    //   }
-    //   &::-webkit-outer-spin-button,
-    //   &::-webkit-inner-spin-button {
-    //     -webkit-appearance: none;
-    //   }
-    // }
+
     &-p {
       color: rgb(110, 20, 20);
       font-size: 14px;
@@ -65,16 +44,6 @@
           height: auto;
           background: transparent;
           cursor: pointer;
-        }
-        &::-webkit-inner-spin-button,
-        &::-webkit-clear-button {
-          // z-index: -10;
-        }
-        &::-webkit-input-placeholder {
-          // z-index: 99;
-        }
-        &:placeholder {
-          // z-index: 99;
         }
         &:not(.has-value):before {
           content: attr(placeholder);
