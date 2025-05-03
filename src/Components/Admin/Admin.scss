@@ -1,9 +1,10 @@
 @import "../../styles/const.scss";
 .admin {
-  color: red;
+//   color: red;
   position: relative;
   z-index: 99;
   background-color: $bg;
+  min-height: 100vh;
   &__form {
     width: 500px;
     margin: auto;

@@ -111,6 +111,11 @@ function Admin() {
         </form>
       </>
       )}
+      <div>
+        {places.filter(place => place.id === placeId).map(place => place.reservedTimes.map(times => {
+          <div>{times}</div>
+        }))}
+      </div>
     </div>
   );
 }

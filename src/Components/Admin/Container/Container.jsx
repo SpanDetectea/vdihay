@@ -1,14 +1,10 @@
-import { useSelector } from "react-redux";
 import "./Container.scss";
 import {
   formatTimeRange,
   reservationOfTheDay,
 } from "../../../javaScript/formatTime";
-import { sortReservedTimesByStart } from "../../../javaScript/date";
 
 function Container({ choiseDate, handleAddReserv, places}) {
-  // const sortPlaces = useSelector((state) => state.reservation.places);
-  // const places = sortReservedTimesByStart(sortPlaces);
 
   return (
     <div className="container">
@@ -56,7 +52,8 @@ function Container({ choiseDate, handleAddReserv, places}) {
             >
               Добавить
             </button>
-            <button className="container-button container-button-remove">
+            <button className="container-button container-button-remove"
+              onClick={() =>handleAddReserv(place.id)}>
               Удалить
             </button>
           </div>
