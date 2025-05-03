@@ -1,11 +1,18 @@
+@import "../../../styles/const.scss";
 .container {
     display: grid;
-    margin: 20px;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    gap: 20px
+    gap: 5px;
+    width: 1024px;
+    margin: 20px auto;
+    &-placeNumber {
+        text-align: center;
+        color: $text;
+        background: #071725;
+    }
     }
     
     .div1 { grid-area: 6 / 1 / 7 / 2; }
@@ -23,7 +30,10 @@
     .div13 { grid-area: 6 / 4 / 7 / 5; }
     .div14 { grid-area: 6 / 5 / 7 / 6; }
     .div {
-        border: 1px solid red;
-        justify-self: center;
-        align-self: start; 
+        border: 1px solid $color;
+        border-radius: 5px;
+        text-align: center;
+        min-width: 178px;
+        min-height: 44px;
+        color: #ffc857;
     }

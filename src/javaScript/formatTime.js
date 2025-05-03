@@ -54,3 +54,14 @@ export const isTimeAvailable = (reservedTimes, start, end) => {
     return start < resEnd && resStart < end;
   });
 };
+
+export const reservationOfTheDay = (time, start, end) => {
+  const resStart = new Date(time[0])
+  const resEnd = new Date(time[1])
+  // console.log("resStart => ", resStart)
+  // console.log("resEnd => ", resEnd)
+  // console.log("start => ", start)
+  // console.log("end => ", end)
+  // console.log("_______________")
+  return start < resEnd && resStart < end;
+}
