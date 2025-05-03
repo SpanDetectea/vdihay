@@ -5,9 +5,11 @@ import {
   reservationOfTheDay,
 } from "../../../javaScript/formatTime";
 import { sortReservedTimesByStart } from "../../../javaScript/date";
-function Container({ choiseDate }) {
-  const sortPlaces = useSelector((state) => state.reservation.places);
-  const places = sortReservedTimesByStart(sortPlaces)
+
+function Container({ choiseDate, handleAddReserv, places}) {
+  // const sortPlaces = useSelector((state) => state.reservation.places);
+  // const places = sortReservedTimesByStart(sortPlaces);
+
   return (
     <div className="container">
       {places.map((place) => {
@@ -15,11 +17,13 @@ function Container({ choiseDate }) {
 
         return (
           <div className={cn} key={place.id}>
-            <div className="container-placeNumber">Стол номер {place.id} ({place.peopleCount})</div>
-            
+            <div className="container-placeNumber">
+              Стол номер {place.id} ({place.peopleCount})
+            </div>
+
             {place.reservedTimes.map((time, index) => {
-              const curDate = new Date(); 
-              const choiceDayDate = new Date(choiseDate); 
+              const curDate = new Date();
+              const choiceDayDate = new Date(choiseDate);
               const endPoint = new Date(choiseDate);
               const startPoint = new Date(choiseDate);
 
@@ -35,11 +39,26 @@ function Container({ choiseDate }) {
               } else {
                 startPoint.setHours(11, 0, 0, 0);
               }
-              const response = reservationOfTheDay(time.times, startPoint, endPoint);
-              return response ? <div key={index} className="container-time">{formatTimeRange(time.times)} {time.name}</div> : null;
+              const response = reservationOfTheDay(
+                time.times,
+                startPoint,
+                endPoint
+              );
+              return response ? (
+                <div key={index} className="container-time">
+                  {formatTimeRange(time.times, false)} {time.name}
+                </div>
+              ) : null;
             })}
-            <button className="container-button container-button-add">Добавить</button>
-            <button className="container-button container-button-remove">Удалить</button>
+            <button
+              className="container-button container-button-add"
+              onClick={() =>handleAddReserv(place.id)}
+            >
+              Добавить
+            </button>
+            <button className="container-button container-button-remove">
+              Удалить
+            </button>
           </div>
         );
       })}

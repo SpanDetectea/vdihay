@@ -3,8 +3,6 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  // grid-column-gap: 0px;
-  // grid-row-gap: 0px;
   gap: 5px;
   width: 1024px;
   margin: 20px auto;
@@ -18,14 +16,17 @@
     margin: 2px;
   }
   &-button {
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 50%;
+    cursor: pointer;
     &-add {
       left: 0;
+      background-color: #aaff00;
     }
     &-remove {
       right: 0;
+      background-color: #ff4f81;
     }
   }
 }

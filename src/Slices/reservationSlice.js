@@ -1,9 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// {
-//   name: "Игорь",
-//   phone: "79112222222",
-//   times: ["2025-04-20T17:30:00", "2025-04-20T19:00:00"],
-// },
 const initialState = {
   places: [
     {
