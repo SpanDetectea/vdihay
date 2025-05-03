@@ -8,7 +8,6 @@ function PlaceRect({ place, start, end, peopleCnt, onClick, curPlace, delta }) {
     isParamsSelected &&
     meetsPeopleRequirement &&
     isTimeAvailable(place.reservedTimes, start, end);
-
   const getColor = () => {
     if (curPlace === place.id) return "#00f0ff";
     if (isParamsSelected && !available) return "red";

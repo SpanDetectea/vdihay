@@ -58,3 +58,11 @@ export const generateTimeSlots = (selectedDate, firstYear, firstMonth, firstday)
   }
   return slots;
 };
+export function sortReservedTimesByStart(places) {
+  return places.map(place => ({
+    ...place,
+    reservedTimes: [...place.reservedTimes].sort((a, b) =>
+      new Date(a.times[0]) - new Date(b.times[0])
+    )
+  }));
+}

@@ -71,6 +71,8 @@ function Reservation() {
             id: curPlace,
             choicesDate: formatDateLocal(start),
             choicesDateEnd: formatDateLocal(end),
+            name: 'imya',
+            phone: "phone"
           })
         );
         const newObj = {
