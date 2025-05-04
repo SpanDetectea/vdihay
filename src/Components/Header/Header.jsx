@@ -7,6 +7,7 @@ import { checkAuth } from "../../Slices/checkAuth";
 function Header() {
   const isAuth = useSelector((state) => state.auth.isAuth);
   const userName = useSelector((state) => state.auth.user.name);
+  const isAdmin = useSelector(state => state.auth.user.role)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkAuth())
@@ -26,6 +27,9 @@ function Header() {
         <Link to="/auth">
           <li className="header__ul__li">{isAuth ? userName : "Войти"}</li>
         </Link>
+        {isAdmin === "admin" ? <Link to="/admin">
+          <li className="header__ul__li">Админка</li>
+        </Link> : null}
       </ul>
     </div>
   );

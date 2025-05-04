@@ -17,6 +17,7 @@ export const authSlice = createSlice({
         name: payload.displayName,
         email: payload.email,
         id: payload.uid,
+        role: payload.role
       };
       state.user = obj;
       state.isLoading = false;
