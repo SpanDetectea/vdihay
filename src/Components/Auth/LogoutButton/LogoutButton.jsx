@@ -5,10 +5,8 @@ import Button from "../../common/Button/Button"
 function LogoutButton() {
   const handleLogout = async () => {
     await signOut(auth);
-    alert("Вы вышли из аккаунта!");
   };
 return <Button onClick={handleLogout} text = "Выйти"/>
-  // return <button onClick={handleLogout}>Выйти</button>;
 }
 
 export default LogoutButton;

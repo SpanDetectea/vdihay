@@ -20,11 +20,10 @@ function SignIn() {
     try {
       dispatch(setLoading(true));
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Вы успешно вошли!");
       const loginSuccessful = true;
 
       if (loginSuccessful) {
-        navigate(from, { replace: true }); // Вернуться обратно
+        navigate(from, { replace: true });
       }
     } catch (error) {
       console.error(error.message);
