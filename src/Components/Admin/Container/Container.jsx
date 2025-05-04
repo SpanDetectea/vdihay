@@ -4,7 +4,7 @@ import {
   reservationOfTheDay,
 } from "../../../javaScript/formatTime";
 
-function Container({ choiseDate, handleAddReserv, places}) {
+function Container({ choiseDate, handleAddReserv, places, handleRemoveReserv}) {
 
   return (
     <div className="container">
@@ -53,7 +53,7 @@ function Container({ choiseDate, handleAddReserv, places}) {
               Добавить
             </button>
             <button className="container-button container-button-remove"
-              onClick={() =>handleAddReserv(place.id)}>
+              onClick={() =>handleRemoveReserv(place.id)}>
               Удалить
             </button>
           </div>

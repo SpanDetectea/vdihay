@@ -54,7 +54,7 @@ function Auth() {
                    
                   >
                     {formatTimeRange(item.times)}
-                    <button class="auth__profile-ul-li-close"  onClick={() => handleClick(item)}>&times;</button>
+                    <button class="auth__profile-ul-li-close" onClick={() => handleClick(item)}>&times;</button>
                   </li>
                 ))}
                 <li></li>
