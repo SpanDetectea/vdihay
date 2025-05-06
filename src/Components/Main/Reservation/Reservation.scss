@@ -34,70 +34,7 @@
       color: rgb(110, 20, 20);
       font-size: 14px;
     }
-    &__date {
-      &-input {
-        position: relative;
-        text-align: center;
-        &::-webkit-calendar-picker-indicator {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          width: auto;
-          height: auto;
-          background: transparent;
-          cursor: pointer;
-        }
-        &:not(.has-value):before {
-          content: attr(placeholder);
-          width: 100%;
-        }
-      }
-    }
-    &__slots {
-      margin-top: 10px;
-      color: $text;
-      @media screen and (max-width: 768px) {
-        margin-top: 0;
-      }
-      p {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        @media screen and (max-width: 768px) {
-          font-size: 12px;
-          margin: 5px 0;
-        }
-      }
-
-      .time-select {
-        width: 100%;
-        padding: 12px;
-        border-radius: 25px;
-        border: 1px solid $text;
-        background-color: transparent;
-        color: $text;
-        font-size: 1rem;
-        cursor: pointer;
-        @media screen and (max-width: 768px) {
-          padding: 5px;
-          font-size: 12px;
-        }
-        &:focus {
-          outline: none;
-          border-color: $color;
-        }
-
-        & option {
-          background-color: $bg;
-          color: $text;
-        }
-
-        & option:disabled {
-          color: #b0b0b0;
-        }
-      }
-    }
+   
     &__info {
       display: flex;
       flex-direction: column;

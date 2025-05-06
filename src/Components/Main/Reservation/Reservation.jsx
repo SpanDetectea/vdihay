@@ -11,6 +11,8 @@ import { booking } from "../../../Slices/reservationSlice";
 import { useLocation, useNavigate } from "react-router";
 import { addReserv } from "../../../Slices/authSlice";
 import Map from "./Map/Map";
+import Slots from "./Slots/Slots";
+import ChoseDate from "../../common/ChoseDate/ChoseDate";
 
 function Reservation() {
   const dispatch = useDispatch();
@@ -25,7 +27,9 @@ function Reservation() {
     secondday,
   } = getDate();
 
-  const orderTimeDuration = useSelector((state) => state.reservation.orderTimeDuration);
+  const orderTimeDuration = useSelector(
+    (state) => state.reservation.orderTimeDuration
+  );
   const isAuth = useSelector((state) => state.auth.isAuth);
   const myReserv = useSelector((state) => state.auth.reserv);
 
@@ -71,8 +75,8 @@ function Reservation() {
             id: curPlace,
             choicesDate: formatDateLocal(start),
             choicesDateEnd: formatDateLocal(end),
-            name: 'imya',
-            phone: "phone"
+            name: "imya",
+            phone: "phone",
           })
         );
         const newObj = {
@@ -107,18 +111,7 @@ function Reservation() {
             У вас не может быть больше 2-ух активных броней!
           </p>
         )}
-        <div className="reservation__form__date">
-          <input
-            type="date"
-            className={`reservation__form__date-input input ${
-              date !== "" ? "has-value" : ""
-            }`}
-            onChange={handleDateChange}
-            value={date}
-            min={`${firstYear}-${firstMonth}-${firstday}`}
-            max={`${secondYear}-${secondMonth}-${secondday}`}
-          />
-        </div>
+        <ChoseDate handleDateChange={handleDateChange} date={date}/>
         <input
           type="number"
           className="input"
@@ -127,23 +120,11 @@ function Reservation() {
           onInput={handlePeopleCntChange}
         />
         {date && peopleCnt && (
-          <div className="reservation__form__slots">
-            <select
-              className="time-select"
-              value={selectedTime}
-              onChange={handleTimeChange}
-              disabled={timeSlots.length === 0}
-            >
-              <option value="" disabled>
-                Выберите время
-              </option>
-              {timeSlots.map(({ time, disabled }) => (
-                <option key={time} value={time} disabled={disabled}>
-                  {time}
-                </option>
-              ))}
-            </select>
-          </div>
+          <Slots
+            selectedTime={selectedTime}
+            handleTimeChange={handleTimeChange}
+            timeSlots={timeSlots}
+          />
         )}
         {date && peopleCnt && (
           <div className="reservation__form__slots">

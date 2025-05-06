@@ -1,0 +1,44 @@
+@import "../../../../styles/const.scss";
+.reservation__form__slots {
+  margin-top: 10px;
+  color: $text;
+  @media screen and (max-width: 768px) {
+    margin-top: 0;
+  }
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+      margin: 5px 0;
+    }
+  }
+}
+
+.time-select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 25px;
+  border: 1px solid $text;
+  background-color: transparent;
+  color: $text;
+  font-size: 1rem;
+  cursor: pointer;
+  @media screen and (max-width: 768px) {
+    padding: 5px;
+    font-size: 12px;
+  }
+  &:focus {
+    outline: none;
+    border-color: $color;
+  }
+
+  & option {
+    background-color: $bg;
+    color: $text;
+  }
+
+  & option:disabled {
+    color: #b0b0b0;
+  }
+}

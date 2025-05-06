@@ -27,7 +27,6 @@ function SignIn() {
       }
     } catch (error) {
       console.error(error.message);
-      alert("Ошибка входа");
     } finally {
       dispatch(setLoading(false));
     }

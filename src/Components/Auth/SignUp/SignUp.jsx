@@ -35,7 +35,6 @@ function SignUp() {
       }
     } catch (error) {
       console.error(error.message);
-      alert("Ошибка регистрации");
     } finally {
       dispatch(setLoading(false))
     }

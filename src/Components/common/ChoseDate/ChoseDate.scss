@@ -1,0 +1,21 @@
+.reservation__form__date {
+  &-input {
+    position: relative;
+    text-align: center;
+    &::-webkit-calendar-picker-indicator {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: auto;
+      height: auto;
+      background: transparent;
+      cursor: pointer;
+    }
+    &:not(.has-value):before {
+      content: attr(placeholder);
+      width: 100%;
+    }
+  }
+}

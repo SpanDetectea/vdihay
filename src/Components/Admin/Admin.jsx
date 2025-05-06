@@ -5,6 +5,7 @@ import Container from "./Container/Container";
 import { useSelector } from "react-redux";
 import AdminRemoveList from "./AdmineRoute/AdminRemoveList/AdminRemoveList";
 import AdminForm from "./AdmineRoute/AdminForm/AdminForm";
+import ChoseDate from "../common/ChoseDate/ChoseDate";
 function Admin() {
   const [date, setDate] = useState("");
   const [formData, setFormDate] = useState({
@@ -53,18 +54,7 @@ function Admin() {
   } = getDate();
   return (
     <div className="admin">
-      <div className="reservation__form__date">
-        <input
-          type="date"
-          className={`reservation__form__date-input input ${
-            date !== "" ? "has-value" : ""
-          }`}
-          onChange={handleDateChange}
-          value={date}
-          min={`${firstYear}-${firstMonth}-${firstday}`}
-          max={`${secondYear}-${secondMonth}-${secondday}`}
-        />
-      </div>
+      <ChoseDate handleDateChange={handleDateChange} date={date}/>
       <Container
         choiseDate={date}
         handleAddReserv={handleAddReserv}
