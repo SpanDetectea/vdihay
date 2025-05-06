@@ -62,11 +62,6 @@ const About = () => {
 
       <section className="about__gallery">
         <h2>Галерея</h2>
-        {/* <div className="gallery__images">
-          <img src="https://example.com/image1.jpg" alt="Кальянный зал" />
-          <img src="https://example.com/image2.jpg" alt="VIP-зона с PlayStation" />
-          <img src="https://example.com/image3.jpg" alt="Авторские напитки" />
-        </div> */}
         <PhotoSlider images={images}/>
       </section>
 

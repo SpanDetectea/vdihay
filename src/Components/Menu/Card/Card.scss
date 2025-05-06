@@ -1,0 +1,17 @@
+$color: #00f0ff;
+$text: #6fcbd1;
+$bg: #040d15;
+$border-color: #6fcbd1;
+.menu__card {
+    background-color: $bg;
+    border: 1px solid $border-color;
+    color: $text;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
