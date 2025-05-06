@@ -3,9 +3,15 @@ import {
   formatTimeRange,
   reservationOfTheDay,
 } from "../../../javaScript/formatTime";
+import { getStartEndPoints } from "../../../javaScript/date";
 
-function Container({ choiseDate, handleAddReserv, places, handleRemoveReserv}) {
-
+function Container({
+  choiseDate,
+  handleAddReserv,
+  places,
+  handleRemoveReserv,
+}) {
+  const { startPoint, endPoint } = getStartEndPoints(choiseDate);
   return (
     <div className="container">
       {places.map((place) => {
@@ -18,23 +24,6 @@ function Container({ choiseDate, handleAddReserv, places, handleRemoveReserv}) {
             </div>
 
             {place.reservedTimes.map((time, index) => {
-              const curDate = new Date();
-              const choiceDayDate = new Date(choiseDate);
-              const endPoint = new Date(choiseDate);
-              const startPoint = new Date(choiseDate);
-
-              endPoint.setDate(endPoint.getDate() + 1);
-              endPoint.setHours(11, 0, 0, 0);
-              if (choiceDayDate.getDate() === curDate.getDate()) {
-                startPoint.setHours(
-                  curDate.getHours(),
-                  curDate.getMinutes(),
-                  0,
-                  0
-                );
-              } else {
-                startPoint.setHours(11, 0, 0, 0);
-              }
               const response = reservationOfTheDay(
                 time.times,
                 startPoint,
@@ -48,12 +37,14 @@ function Container({ choiseDate, handleAddReserv, places, handleRemoveReserv}) {
             })}
             <button
               className="container-button container-button-add"
-              onClick={() =>handleAddReserv(place.id)}
+              onClick={() => handleAddReserv(place.id)}
             >
               Добавить
             </button>
-            <button className="container-button container-button-remove"
-              onClick={() =>handleRemoveReserv(place.id)}>
+            <button
+              className="container-button container-button-remove"
+              onClick={() => handleRemoveReserv(place.id)}
+            >
               Удалить
             </button>
           </div>

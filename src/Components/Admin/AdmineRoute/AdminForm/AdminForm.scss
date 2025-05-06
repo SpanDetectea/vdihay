@@ -1,0 +1,41 @@
+@import "../../../../styles/const.scss";
+.admin {
+  &-place {
+    color: $color;
+    text-align: center;
+  }
+  &__form {
+    width: 500px;
+    margin: auto;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  &-time {
+    background-color: $bg;
+    color: $text;
+    border: 1px solid $color;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 16px;
+    width: 150px;
+    cursor: pointer;
+    transition: border 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 0 0 8px $color;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: lighten($color, 10%);
+      box-shadow: 0 0 12px lighten($color, 10%);
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
+    }
+  }
+}

@@ -66,3 +66,18 @@ export function sortReservedTimesByStart(places) {
     )
   }));
 }
+
+export const getStartEndPoints = (choiseDate) => {
+  const curDate = new Date();
+  const choiceDayDate = new Date(choiseDate);
+  const endPoint = new Date(choiseDate);
+  const startPoint = new Date(choiseDate);
+  endPoint.setDate(endPoint.getDate() + 1);
+  endPoint.setHours(11, 0, 0, 0);
+  if (choiceDayDate.getDate() === curDate.getDate()) {
+    startPoint.setHours(curDate.getHours(), curDate.getMinutes(), 0, 0);
+  } else {
+    startPoint.setHours(11, 0, 0, 0);
+  }
+  return { startPoint, endPoint };
+};

@@ -3,6 +3,7 @@ import { sortReservedTimesByStart } from "../../../../javaScript/date";
 import { formatTimeRange } from "../../../../javaScript/formatTime";
 import Button from "../../../common/Button/Button";
 import { unReserve } from "../../../../Slices/reservationSlice";
+import "./AdminRemoveList.scss"
 
 function AdminRemoveList({handleClose, placeId}) {
     const sortPlaces = useSelector((state) => state.reservation.places);

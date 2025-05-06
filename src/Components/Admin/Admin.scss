@@ -4,51 +4,7 @@
   z-index: 99;
   background-color: $bg;
   min-height: 100vh;
-  &__form {
-    width: 500px;
-    margin: auto;
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    align-items: center;
-  }
-  &__reservs {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
   &-profile {
     width: 100%;
-  }
-  &-place {
-    color: $color;
-    text-align: center;
-  }
-  &-time {
-    background-color: $bg;
-    color: $text;
-    border: 1px solid $color;
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 16px;
-    width: 150px;
-    cursor: pointer;
-    transition: border 0.3s, box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: 0 0 8px $color;
-    }
-
-    &:focus {
-      outline: none;
-      border-color: lighten($color, 10%);
-      box-shadow: 0 0 12px lighten($color, 10%);
-    }
-
-    &::-webkit-calendar-picker-indicator {
-      filter: invert(1);
-      cursor: pointer;
-    }
   }
 }
