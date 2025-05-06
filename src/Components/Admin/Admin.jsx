@@ -6,6 +6,7 @@ import Button from "../common/Button/Button";
 import { formatDateLocal, formatTimeRange } from "../../javaScript/formatTime";
 import { booking, unReserve } from "../../Slices/reservationSlice";
 import { useDispatch, useSelector } from "react-redux";
+import AdminRemoveList from "./AdmineRoute/AdminRemoveList/AdminRemoveList";
 function Admin() {
   const [date, setDate] = useState("");
   const [name, setName] = useState("");
@@ -57,6 +58,10 @@ function Admin() {
       };
       dispatch(booking(newObj));
       setIsAdd(false);
+      setName("")
+      setPhone("")
+      setStartTime("")
+      setEndTime("")
     }
   };
   const handleClose = () => {
@@ -67,13 +72,13 @@ function Admin() {
     setStartTime("");
     setEndTime("");
   };
-  const handleClickRemove = (times) => {
-    const obj = {
-      table: placeId,
-      times: times,
-    };
-    dispatch(unReserve(obj));
-  };
+  // const handleClickRemove = (times) => {
+  //   const obj = {
+  //     table: placeId,
+  //     times: times,
+  //   };
+  //   dispatch(unReserve(obj));
+  // };
   const {
     firstYear,
     firstMonth,
@@ -138,31 +143,32 @@ function Admin() {
         </>
       )}
       {isRemove && places[placeId - 1].reservedTimes.length && (
-        <div className="admin__reservs">
-          <ul className="auth__profile-ul admin-profile">
-            {places
-              .filter((place) => place.id === placeId)
-              .map((place) =>
-                place.reservedTimes.map((time) => {
-                  const { name, phone, times } = time;
-                  return (
-                    <li key={phone} className="auth__profile-ul-li">
-                      <span>
-                        {formatTimeRange(times, false)} {name}
-                      </span>
-                      <button
-                        className="auth__profile-ul-li-close"
-                        onClick={() => handleClickRemove(times)}
-                      >
-                        &times;
-                      </button>
-                    </li>
-                  );
-                })
-              )}
-          </ul>
-          <Button text="Закрыть" onClick={handleClose} />
-        </div>
+        // <div className="admin__reservs">
+        //   <ul className="auth__profile-ul admin-profile">
+        //     {places
+        //       .filter((place) => place.id === placeId)
+        //       .map((place) =>
+        //         place.reservedTimes.map((time) => {
+        //           const { name, phone, times } = time;
+        //           return (
+        //             <li key={phone} className="auth__profile-ul-li">
+        //               <span>
+        //                 {formatTimeRange(times, false)} {name}
+        //               </span>
+        //               <button
+        //                 className="auth__profile-ul-li-close"
+        //                 onClick={() => handleClickRemove(times)}
+        //               >
+        //                 &times;
+        //               </button>
+        //             </li>
+        //           );
+        //         })
+        //       )}
+        //   </ul>
+        //   <Button text="Закрыть" onClick={handleClose} />
+        // </div>
+        <AdminRemoveList handleClose={handleClose} placeId={placeId}/>
       )}
     </div>
   );

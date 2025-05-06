@@ -27,9 +27,9 @@ function Map({
       if (screenWidth.isScreenLg) {
         delta = 0.6;
         if (screenWidth.isScreenMd) {
-          delta = 0.4;
+          delta = 0.5;
           if (screenWidth.isScreenSm) {
-            delta = 0.4;
+            delta = 0.5;
           }
         }
       }

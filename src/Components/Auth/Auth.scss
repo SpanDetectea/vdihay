@@ -35,6 +35,10 @@
         }
       }
     }
+    @media screen and (max-width: 768px) {
+      text-align: center;
+      
+    }
   }
   &__signin {
     text-align: center;
