@@ -4,6 +4,7 @@ import { generateTimeSlots, getDate } from "../../../javaScript/date";
 import {
   calculateBookingTime,
   formatDateLocal,
+  initialDate,
 } from "../../../javaScript/formatTime";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../common/Button/Button";
@@ -32,8 +33,8 @@ function Reservation() {
   );
   const isAuth = useSelector((state) => state.auth.isAuth);
   const myReserv = useSelector((state) => state.auth.reserv);
-
-  const [date, setDate] = useState("");
+  const user = useSelector(state => state.auth.user)
+  const [date, setDate] = useState(initialDate(new Date()));
   const [selectedTime, setSelectedTime] = useState("");
   const [orderTime, setOrderTime] = useState(orderTimeDuration[0]);
   const [timeSlots, setTimeSlots] = useState([]);
@@ -75,7 +76,7 @@ function Reservation() {
             id: curPlace,
             choicesDate: formatDateLocal(start),
             choicesDateEnd: formatDateLocal(end),
-            name: "imya",
+            name: user.name ? user.name : "Гость",
             phone: "phone",
           })
         );
@@ -141,6 +142,7 @@ function Reservation() {
             </select>
           </div>
         )}
+        {date && peopleCnt && orderTime && !curPlace && <p className="reservation__form-placeholder"> {"⇦"}Выберите стол</p>}
         {curPlace && (
           <div className="reservation__form__info">
             <p className="reservation__form__info-paragraph">

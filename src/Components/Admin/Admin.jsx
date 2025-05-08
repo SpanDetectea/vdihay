@@ -6,8 +6,9 @@ import { useSelector } from "react-redux";
 import AdminRemoveList from "./AdmineRoute/AdminRemoveList/AdminRemoveList";
 import AdminForm from "./AdmineRoute/AdminForm/AdminForm";
 import ChoseDate from "../common/ChoseDate/ChoseDate";
+import { initialDate } from "../../javaScript/formatTime";
 function Admin() {
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(initialDate(new Date()));
   const [formData, setFormDate] = useState({
     name: "",
     phone: "",

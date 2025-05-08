@@ -63,6 +63,7 @@ function AdminForm({
           type="text"
           placeholder="Имя"
           className="input"
+          maxLength={30}
           onInput={handleName}
           value={formData.name}
         />
@@ -72,6 +73,7 @@ function AdminForm({
           className="input"
           onInput={handlePhone}
           value={formData.phone}
+          maxLength={12}
         />
         <input
           type="time"

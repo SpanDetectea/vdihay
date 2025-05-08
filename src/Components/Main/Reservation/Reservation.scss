@@ -29,7 +29,10 @@
       min-width: 130px;
       margin: 0 5px;
     }
-
+    &-placeholder {
+      color: $text;
+      margin-top: 10px;
+    }
     &-p {
       color: rgb(110, 20, 20);
       font-size: 14px;

@@ -5,7 +5,16 @@
     padding: 2rem;
     line-height: 1.6;
     padding-top: 100px;
-  
+    &__us {
+      &-title {
+        text-align: center;
+      }
+    }
+    &__gallery {
+      &-title {
+        text-align: center;
+      }
+    }
     h2 {
       font-size: 2rem;
       color: #00f0ff; 

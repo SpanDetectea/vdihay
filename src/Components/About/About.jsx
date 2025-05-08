@@ -20,7 +20,7 @@ const About = () => {
   return (
     <main className="about">
       <section className="about__us">
-        <h2>О нас</h2>
+        <h2 className="about__us-title">О нас</h2>
         <p>
           <strong>Vdihay Lounge</strong> — это пространство, где каждый вдох
           наполняет вкусом, а каждый момент — атмосферой уюта и стиля. Мы
@@ -61,7 +61,7 @@ const About = () => {
       </section>
 
       <section className="about__gallery">
-        <h2>Галерея</h2>
+        <h2 className="about__gallery-title">Галерея</h2>
         <PhotoSlider images={images}/>
       </section>
 
