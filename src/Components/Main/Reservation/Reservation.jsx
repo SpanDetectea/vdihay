@@ -14,6 +14,9 @@ import { addReserv } from "../../../Slices/authSlice";
 import Map from "./Map/Map";
 import Slots from "./Slots/Slots";
 import ChoseDate from "../../common/ChoseDate/ChoseDate";
+import { peopleCount } from "../../../javaScript/Data";
+import { auth, db } from "../../../javaScript/firebase";
+import { arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
 
 function Reservation() {
   const dispatch = useDispatch();
@@ -33,12 +36,12 @@ function Reservation() {
   );
   const isAuth = useSelector((state) => state.auth.isAuth);
   const myReserv = useSelector((state) => state.auth.reserv);
-  const user = useSelector(state => state.auth.user)
+  const user = useSelector((state) => state.auth.user);
   const [date, setDate] = useState(initialDate(new Date()));
   const [selectedTime, setSelectedTime] = useState("");
   const [orderTime, setOrderTime] = useState(orderTimeDuration[0]);
   const [timeSlots, setTimeSlots] = useState([]);
-  const [peopleCnt, setPeopleCnt] = useState("");
+  const [peopleCnt, setPeopleCnt] = useState(peopleCount[0]);
   const [curPlace, setCurPlace] = useState(undefined);
 
   useEffect(() => {
@@ -58,9 +61,7 @@ function Reservation() {
     setCurPlace(undefined);
   };
   const handlePeopleCntChange = (e) => {
-    const value = Math.floor(e.target.value);
-    const validateValue = value < 1 ? "" : value;
-    setPeopleCnt(validateValue);
+    setPeopleCnt(e.target.value);
     setCurPlace(undefined);
   };
   const handleOrderTime = (e) => {
@@ -85,6 +86,19 @@ function Reservation() {
           table: curPlace,
         };
         dispatch(addReserv(newObj));
+        const userRef = doc(db, "booking", auth.currentUser.uid);
+        try {
+          console.log(userRef);
+          updateDoc(userRef, {
+            bookings: arrayUnion(newObj),
+          });
+          console.log("Бронь добавлена.");
+        } catch (error) {
+          setDoc(userRef, {
+            bookings: arrayUnion(newObj),
+          });
+          console.error("Ошибка при добавлении брони: ", error);
+        }
         setCurPlace(undefined);
       }
     } else {
@@ -107,19 +121,23 @@ function Reservation() {
         setCurPlace={setCurPlace}
       />
       <form className="reservation__form">
-        {myReserv.length >= 2 && (
+        {myReserv.length >= 2 && isAuth && (
           <p className="reservation__form-p">
             У вас не может быть больше 2-ух активных броней!
           </p>
         )}
-        <ChoseDate handleDateChange={handleDateChange} date={date}/>
-        <input
-          type="number"
-          className="input"
-          placeholder="Количество человек"
+        <ChoseDate handleDateChange={handleDateChange} date={date} />
+
+        <select
+          className="time-select"
           value={peopleCnt}
-          onInput={handlePeopleCntChange}
-        />
+          onChange={handlePeopleCntChange}
+          disabled={timeSlots.length === 0}
+        >
+          {peopleCount.map((cnt) => (
+            <option key={cnt}>{cnt}</option>
+          ))}
+        </select>
         {date && peopleCnt && (
           <Slots
             selectedTime={selectedTime}
@@ -142,7 +160,9 @@ function Reservation() {
             </select>
           </div>
         )}
-        {date && peopleCnt && orderTime && !curPlace && <p className="reservation__form-placeholder"> {"⇦"}Выберите стол</p>}
+        {date && peopleCnt && orderTime && !curPlace && (
+          <p className="reservation__form-placeholder"> {"⇦"}Выберите стол</p>
+        )}
         {curPlace && (
           <div className="reservation__form__info">
             <p className="reservation__form__info-paragraph">

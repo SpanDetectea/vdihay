@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from "react-router";
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,22 +21,20 @@ function SignIn() {
     try {
       dispatch(setLoading(true));
       await signInWithEmailAndPassword(auth, email, password);
-      const loginSuccessful = true;
 
-      if (loginSuccessful) {
-        navigate(from, { replace: true });
-      }
+      navigate(from, { replace: true });
     } catch (error) {
       console.error(error.message);
+      setError("Введены неккоретные данные!");
     } finally {
       dispatch(setLoading(false));
     }
   };
   const handleKeyPress = (e) => {
-    if(e.key === 'Enter'){
-      handleSignIn()
+    if (e.key === "Enter") {
+      handleSignIn();
     }
-  }
+  };
 
   return (
     <div className="signIn">
@@ -53,6 +52,7 @@ function SignIn() {
         onChange={(e) => setPassword(e.target.value)}
         onKeyDown={handleKeyPress}
       />
+      {error && <div className="error"> {error}</div>}
       <Button onClick={handleSignIn} text="Войти" />
     </div>
   );

@@ -12,7 +12,6 @@ function ChoseDate({handleDateChange, date}) {
       } = getDate();
   return (
     <div className="reservation__form__date">
-      F
       <input
         type="date"
         className={`reservation__form__date-input input ${

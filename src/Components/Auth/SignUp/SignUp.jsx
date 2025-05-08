@@ -3,23 +3,25 @@ import { useState } from "react";
 import { auth } from "../../../javaScript/firebase";
 import "./SignUp.scss";
 import Button from "../../common/Button/Button";
-import { setLoading } from "../../../Slices/authSlice";
+import { logIn, setLoading } from "../../../Slices/authSlice";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
   const [name, setName] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location.state?.from || '/';
+  const from = location.state?.from || "/";
 
   const handleSignUp = async () => {
     try {
-      dispatch(setLoading(true))
+      dispatch(setLoading(true));
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -28,22 +30,27 @@ function SignUp() {
       await updateProfile(userCredential.user, {
         displayName: name,
       });
-      const loginSuccessful = true;
-
-      if (loginSuccessful) {
-        navigate(from, { replace: true }); 
-      }
+      dispatch(
+        logIn({
+          uid: auth.currentUser.uid,
+          email: auth.currentUser.email,
+          displayName: auth.currentUser.displayName,
+          role: "user",
+        })
+      );
+      navigate(from, { replace: true });
     } catch (error) {
       console.error(error.message);
+      setError("Ошибка регистрации!");
     } finally {
-      dispatch(setLoading(false))
+      dispatch(setLoading(false));
     }
   };
   const handleKeyPress = (e) => {
-    if(e.key === 'Enter'){
-      handleSignUp()
+    if (e.key === "Enter") {
+      handleSignUp();
     }
-  }
+  };
   const handleName = (e) => setName(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
@@ -72,10 +79,8 @@ function SignUp() {
           onKeyDown={handleKeyPress}
         />
       </div>
-      <Button
-        onClick={handleSignUp}
-        text="Зарегистрироваться"
-      />
+      {error && <div className="error"> {error}</div>}
+      <Button onClick={handleSignUp} text="Зарегистрироваться" />
     </div>
   );
 }
