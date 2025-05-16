@@ -88,11 +88,9 @@ function Reservation() {
         dispatch(addReserv(newObj));
         const userRef = doc(db, "booking", auth.currentUser.uid);
         try {
-          console.log(userRef);
           updateDoc(userRef, {
             bookings: arrayUnion(newObj),
           });
-          console.log("Бронь добавлена.");
         } catch (error) {
           setDoc(userRef, {
             bookings: arrayUnion(newObj),

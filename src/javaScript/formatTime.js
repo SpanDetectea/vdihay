@@ -18,8 +18,10 @@ export const calculateBookingTime = (baseDate, selectedTime, orderTime) => {
   const [hourStr, minuteStr] = selectedTime.split(":");
   const hour = parseInt(hourStr, 10);
   const minute = parseInt(minuteStr, 10);
-
   const start = new Date(baseDate);
+  if (hour <= 10) {
+    start.setDate(start.getDate()+1)
+  }
   start.setHours(hour, minute, 0, 0);
 
   const end = new Date(start);
@@ -38,12 +40,15 @@ export function formatTimeRange([start, end], withDate = true) {
 
   const formatTime = (date) =>
     date.toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" });
-
   const startTime = formatTime(startDate);
   const endTime = formatTime(endDate);
+
+
   if (withDate) {
+    const iso = startDate.toISOString()
+    const newDate = new Date(iso)
     const date = startDate.toISOString().split("T")[0];
-    return `${date} ${startTime} - ${endTime}`;
+    return `${initialDate(newDate)} ${startTime} - ${endTime}`;
   }
   return `${startTime} - ${endTime}`;
 }

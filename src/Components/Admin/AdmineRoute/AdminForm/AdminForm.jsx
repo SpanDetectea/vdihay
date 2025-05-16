@@ -32,12 +32,17 @@ function AdminForm({
       const start = new Date(date);
       const startSplit = formData.startTime.split(":");
       start.setHours(+startSplit[0], +startSplit[1], 0, 0);
-      const end = new Date(date);
+      
+      if (start.getHours() <= 10) {
+        start.setDate(start.getDate()+1)
+      }
+        const end = new Date(start);
+        // const end = new Date(date);
       const endSplit = formData.endTime.split(":");
       end.setHours(+endSplit[0], +endSplit[1], 0, 0);
-      if (+end.getHours() < 5) {
-        end.setDate(end.getDate() + 1);
-      }
+      // if (+end.getHours() < 5) {
+      //   end.setDate(end.getDate() + 1);
+      // }
       const newObj = {
         id: placeId,
         choicesDate: formatDateLocal(start),

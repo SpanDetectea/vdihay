@@ -38,7 +38,6 @@ export const authSlice = createSlice({
       state.reserv.push(newObj);
     },
     deleteReserv: (state, { payload }) => {
-      console.log(payload);
       const index = state.reserv.findIndex(
         (res) => JSON.stringify(res.times) === JSON.stringify(payload.times)
       );
