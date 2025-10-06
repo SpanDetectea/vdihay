@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Vdihay — Система онлайн-бронирования столиков
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Описание
 
-## Available Scripts
+Vdihay — это веб-приложение для управления бронированием столиков в кальянной.  
+Приложение позволяет клиентам бронировать столики онлайн, а администратору — отслеживать и управлять бронированиями.
 
-In the project directory, you can run:
+🔗 **Демо проекта доступна по ссылке:**  
+👉 [https://spandetectea.github.io/vdihay/](https://spandetectea.github.io/vdihay/)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Цель проекта
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Создать удобное и функциональное веб-приложение для заведения Vdihay, которое:
 
-### `npm test`
+- Позволяет клиентам просматривать свободные столики и бронировать их онлайн.
+- Обеспечивает личный кабинет клиента для просмотра и удаления бронирований.
+- Позволяет администратору управлять всеми бронированиями.
+- Поддерживает адаптивность интерфейса для мобильных устройств (для клиентской части).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Используемые технологии
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React** — библиотека для построения интерфейсов.  
+- **Redux** — менеджер состояния приложения.  
+- **SCSS** — стилизация компонентов.  
+- **Firebase** — аутентификация по email.  
+- **LocalStorage** — хранение данных бронирований на клиенте.  
+- **Git/GitHub Pages** — версияция и деплой проекта.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Функциональные возможности
 
-### `npm run eject`
+### Клиентская часть
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Просмотр доступных столиков с фильтром по количеству людей и VIP-статусу.
+- Онлайн-бронирование столиков с выбором времени (11:00–03:00).
+- Личный кабинет для просмотра и удаления бронирований.
+- Адаптивный интерфейс под мобильные устройства.
+- Страницы «Меню» и «О нас» для информации о заведении.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Административная часть
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Просмотр всех бронирований в таблице.
+- Добавление и удаление бронирований.
+- Интерфейс оптимизирован для работы на компьютере.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Установка и запуск проекта
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Клонируйте репозиторий:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+git clone <url проекта>
+```
 
-### Code Splitting
+2. Перейдите в папку проекта:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+cd <имя проекта>
+```
 
-### Analyzing the Bundle Size
+3. Установите зависимости:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+npm i
+```
 
-### Making a Progressive Web App
+4. Запустите проект в режиме разработки:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+npm start
+```
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Проект будет доступен по адресу http://localhost:3000.
